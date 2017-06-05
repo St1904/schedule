@@ -1,6 +1,6 @@
 package com.rep.core.Dto;
 
-import com.rep.db.domain.Event;
+import com.rep.db.domain.domain_old.Event;
 
 import java.util.Date;
 

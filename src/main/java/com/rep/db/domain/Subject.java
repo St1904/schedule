@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "subject")
 public class Subject extends BaseEntity {
-    @Column(name = "name", nullable = false, length = 100)
+    @Column(name = "name", nullable = false, length = 100, unique = true)
     private String name;
 
     public String getName() {

@@ -1,4 +1,7 @@
-package com.rep.db.domain;
+package com.rep.db.domain.domain_old;
+
+import com.rep.db.domain.BaseEntity;
+import com.rep.db.domain.Subject;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -8,8 +11,8 @@ import java.util.Set;
  * Created by sbt-sokolova-ts on 07.02.2017.
  */
 
-@Entity
-@Table(name = "theme")
+//@Entity
+//@Table(name = "theme")
 public class Theme extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "id_subject", foreignKey = @ForeignKey(name = "fk_theme_subject"))

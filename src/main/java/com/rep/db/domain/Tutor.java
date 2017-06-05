@@ -2,10 +2,7 @@ package com.rep.db.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,7 +11,7 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name = "tutor")
+@Table(name = "tutor", uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "address"})})
 public class Tutor extends BaseEntity {
     @Column(name = "name")
     private String name;
@@ -58,18 +55,20 @@ public class Tutor extends BaseEntity {
         this.students = students;
     }
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "eTutor")
-    private Set<Event> events = new HashSet<>();
 
-    public Set<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(Set<Event> events) {
-        this.events = events;
-    }
-
-    public Tutor() {
-    }
+    //TODO заменить на many-to-many
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "eTutor")
+//    private Set<Event> events = new HashSet<>();
+//
+//    public Set<Event> getEvents() {
+//        return events;
+//    }
+//
+//    public void setEvents(Set<Event> events) {
+//        this.events = events;
+//    }
+//
+//    public Tutor() {
+//    }
 }

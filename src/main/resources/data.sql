@@ -1,7 +1,20 @@
+# INSERT INTO tutor (name, address) VALUE ("Мария Ивановна", "Санкт-Петербург, пл.Мужества, д...");
+
 # INSERT INTO contact_name (name) VALUES ("мобильный телефон"), ("вконтакте");
+
 # INSERT INTO contact (value, id_contact_name) VALUE ('89007654321', (SELECT id AS contact_name_id FROM contact_name WHERE name='мобильный телефон'));
 # INSERT INTO contact (value, id_contact_name) VALUE ('89001234567', (SELECT id AS contact_name_id FROM contact_name WHERE name='мобильный телефон'));
-# INSERT INTO tutor (name, address) VALUE ("Мария Ивановна", "Санкт-Петербург, пл.Мужества, д...");
+
+# INSERT INTO subject (name) VALUES ('Математика'), ("Физика"), ("Литература");
+
+
+
+
+
+
+
+
+
 # INSERT INTO event(id_tutor, name, date_start, time_start, time_end, comment) VALUE (1, "Занятие 1", "2017-02-13", "11:00:00", "12:00:00", "первое занятие");
 # INSERT INTO event(id_tutor, name, date_start, time_start, time_end, comment) VALUE (1, "Занятие 2", "2017-02-13", "13:00:00", "14:00:00", "второе занятие");
 # INSERT INTO event(id_tutor, name, date_start, time_start, time_end, comment) VALUE (1, "Занятие с Иваном", "2017-02-14", "10:00:00", "11:30:00", "математика по вторникам");

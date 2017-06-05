@@ -1,4 +1,4 @@
-package com.rep.db.domain;
+package com.rep.db.domain.domain_old;
 
 /**
  * Created by sbt-sokolova-ts on 07.02.2017.
@@ -6,5 +6,6 @@ package com.rep.db.domain;
 public enum RepeatCode {
     DAILY,
     WEEKLY,
-    YEARLY
+    YEARLY,
+    MONTHLY
 }

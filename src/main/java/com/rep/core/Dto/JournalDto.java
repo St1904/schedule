@@ -1,6 +1,6 @@
 package com.rep.core.Dto;
 
-import com.rep.db.domain.Journal;
+import com.rep.db.domain.domain_old.Journal;
 
 import java.util.Date;
 

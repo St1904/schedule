@@ -1,4 +1,6 @@
-package com.rep.db.domain;
+package com.rep.db.domain.domain_old;
+
+import com.rep.db.domain.BaseEntity;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -7,8 +9,8 @@ import java.util.Date;
  * Created by sbt-sokolova-ts on 07.02.2017.
  */
 
-@Entity
-@Table(name = "journal")
+//@Entity
+//@Table(name = "journal")
 public class Journal extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "id_theme", foreignKey = @ForeignKey(name = "fk_journal_theme"))

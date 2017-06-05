@@ -1,6 +1,8 @@
-package com.rep.db.domain;
+package com.rep.db.domain.domain_old;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.rep.db.domain.BaseEntity;
+import com.rep.db.domain.Tutor;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,8 +11,8 @@ import java.util.Date;
  * Created by sbt-sokolova-ts on 07.02.2017.
  */
 
-@Entity
-@Table(name = "event")
+//@Entity
+//@Table(name = "event")
 public class Event extends BaseEntity {
     @JsonIgnore
     @ManyToOne

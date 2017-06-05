@@ -1,26 +1,15 @@
 package com.rep;
 
-import com.rep.core.Dto.EventDto;
 import com.rep.core.services.ContactService;
-import com.rep.core.services.EventService;
-import com.rep.db.domain.Event;
-import com.rep.db.domain.Repeats;
-import com.rep.db.repository.*;
-import com.rep.db.domain.ContactName;
+import com.rep.db.repository.ContactNameRepository;
+import com.rep.db.repository.ContactRepository;
+import com.rep.db.repository.TutorRepository;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by St on 31.01.2017.
@@ -97,28 +86,6 @@ public class Application {
 //        for (ContactName contactName : list) {
 //            System.out.println(contactName);
 //        }
-
-        EventService eventService = applicationContext.getBean(EventService.class);
-/*
-        List<Event> list = eventService.listEventsWithJoin();
-        for (Event event : list) {
-            System.out.println(event);
-        }*/
-
-        EventRepository eventRepository = applicationContext.getBean(EventRepository.class);
-/*        List<Event> list = eventRepository.findAllByTutor(1L);
-        for (Event event : list) {
-            System.out.println(event);
-        }*/
-
-        RepeatsRepository repeatsRepository = applicationContext.getBean(RepeatsRepository.class);
-/*
-        Repeats repeats = repeatsRepository.findByEventId(3L);
-        System.out.println(repeats);*/
-        List<EventDto> list = eventService.listEventsForWeekFromDate(new Date(117, 1, 14));
-        for (EventDto eventDto : list) {
-            System.out.println(eventDto);
-        }
 
     }
 }

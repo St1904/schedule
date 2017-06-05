@@ -1,6 +1,6 @@
 package com.rep.core.Dto;
 
-import com.rep.db.domain.Theme;
+import com.rep.db.domain.domain_old.Theme;
 
 /**
  * Created by sbt-sokolova-ts on 16.02.2017.

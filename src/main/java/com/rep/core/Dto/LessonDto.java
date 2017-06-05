@@ -1,6 +1,6 @@
 package com.rep.core.Dto;
 
-import com.rep.db.domain.Lesson;
+import com.rep.db.domain.domain_old.Lesson;
 import com.rep.db.domain.Student;
 
 import java.math.BigDecimal;

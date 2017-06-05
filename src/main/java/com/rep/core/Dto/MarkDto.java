@@ -1,6 +1,6 @@
 package com.rep.core.Dto;
 
-import com.rep.db.domain.Mark;
+import com.rep.db.domain.domain_old.Mark;
 
 import java.util.Date;
 

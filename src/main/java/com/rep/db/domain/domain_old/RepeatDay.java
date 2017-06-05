@@ -1,4 +1,6 @@
-package com.rep.db.domain;
+package com.rep.db.domain.domain_old;
+
+import com.rep.db.domain.BaseEntity;
 
 import javax.persistence.*;
 
@@ -6,8 +8,8 @@ import javax.persistence.*;
  * Created by sbt-sokolova-ts on 07.02.2017.
  */
 
-@Entity
-@Table(name = "repeat_day")
+//@Entity
+//@Table(name = "repeat_day")
 public class RepeatDay extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "id_repeats", foreignKey = @ForeignKey(name = "fk_repeat_day_repeats"), nullable = false)

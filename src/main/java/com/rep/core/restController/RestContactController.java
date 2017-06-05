@@ -3,7 +3,6 @@ package com.rep.core.restController;
 import com.rep.core.Dto.ContactDto;
 import com.rep.core.services.ContactService;
 import com.rep.db.domain.Contact;
-import com.rep.db.domain.ContactName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,7 +20,7 @@ import java.util.List;
 @RequestMapping("/rest/contact")
 public class RestContactController {
     @Autowired
-    ContactService contactService;
+    private ContactService contactService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<ContactDto>> listAllContactNames() {

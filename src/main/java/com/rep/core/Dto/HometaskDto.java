@@ -1,6 +1,6 @@
 package com.rep.core.Dto;
 
-import com.rep.db.domain.Hometask;
+import com.rep.db.domain.domain_old.Hometask;
 
 import java.util.Date;
 

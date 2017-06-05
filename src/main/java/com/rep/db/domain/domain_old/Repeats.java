@@ -1,8 +1,6 @@
-package com.rep.db.domain;
+package com.rep.db.domain.domain_old;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.rep.db.domain.BaseEntity;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,11 +11,11 @@ import java.util.Set;
  * Created by sbt-sokolova-ts on 07.02.2017.
  */
 
-@Entity
-@Table(name = "repeats")
+//@Entity
+//@Table(name = "repeats")
 public class Repeats extends BaseEntity {
 //    @JsonIgnoreProperties("rEvent")
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_event", nullable = false, foreignKey = @ForeignKey(name = "fk_repeats_event"))
     private Event rEvent;
 

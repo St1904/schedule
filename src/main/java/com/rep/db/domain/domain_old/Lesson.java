@@ -1,4 +1,8 @@
-package com.rep.db.domain;
+package com.rep.db.domain.domain_old;
+
+import com.rep.db.domain.BaseEntity;
+import com.rep.db.domain.Student;
+import com.rep.db.domain.Subject;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -9,8 +13,8 @@ import java.util.Set;
  * Created by sbt-sokolova-ts on 07.02.2017.
  */
 
-@Entity
-@Table(name = "lesson")
+//@Entity
+//@Table(name = "lesson")
 public class Lesson extends BaseEntity {
     @Column(name = "price")
     private BigDecimal price;
@@ -30,6 +34,8 @@ public class Lesson extends BaseEntity {
                 '}';
     }
 
+
+    //TODO сделать нормальные ссылки
     @OneToOne
     @JoinColumn(name = "id_event", foreignKey = @ForeignKey(name = "fk_lesson_event"))
     private Event event;
