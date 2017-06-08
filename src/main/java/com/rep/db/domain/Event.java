@@ -10,19 +10,32 @@ import java.util.Date;
  */
 
 @Entity
-@Table(name = "event_daily")
-public class EventDaily extends BaseEntity {
+@Table(name = "event")
+public class Event extends BaseEntity {
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "id_tutor", nullable = false, foreignKey = @ForeignKey(name = "fk_event_daily_of_tutor"))
+    @JoinColumn(name = "id_tutor",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "fk_event_of_tutor"))
     private Tutor eTutor;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name",
+            nullable = false)
     private String name;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "code",
+            columnDefinition = "enum('DAILY', 'WEEKLY', 'YEARLY', 'MONTHLY', 'NEVER')",
+            nullable = false)
+    private RepeatCode repeatCode;
 
     @Temporal(value = TemporalType.DATE)
     @Column(name = "date_start", nullable = false)
     private Date dateStart;
+
+    @Temporal(value = TemporalType.DATE)
+    @Column(name = "date_end")
+    private Date dateEnd;
 
     @Temporal(value = TemporalType.TIME)
     @Column(name = "time_start")
@@ -51,12 +64,28 @@ public class EventDaily extends BaseEntity {
         this.name = name;
     }
 
+    public RepeatCode getRepeatCode() {
+        return repeatCode;
+    }
+
+    public void setRepeatCode(RepeatCode repeatCode) {
+        this.repeatCode = repeatCode;
+    }
+
     public Date getDateStart() {
         return dateStart;
     }
 
     public void setDateStart(Date dateStart) {
         this.dateStart = dateStart;
+    }
+
+    public Date getDateEnd() {
+        return dateEnd;
+    }
+
+    public void setDateEnd(Date dateEnd) {
+        this.dateEnd = dateEnd;
     }
 
     public Date getTimeStart() {

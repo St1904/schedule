@@ -1,8 +1,10 @@
 package com.rep.core.Dto;
 
-import com.rep.db.domain.domain_old.Event;
+import com.rep.db.domain.Event;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by sbt-sokolova-ts on 15.02.2017.
@@ -10,19 +12,29 @@ import java.util.Date;
 public class EventDto {
     private Long idTutor;
     private String name;
-    private Date currentDate;
+    private Date dateStart;
+    private Date dateEnd;
     private Date timeStart;
     private Date timeEnd;
     private String comment;
 
-    public static EventDto of(Event event, Date currentDate) {
+    public static EventDto of(Event event) {
         EventDto result = new EventDto();
         result.setIdTutor(event.geteTutor().getId());
         result.setName(event.getName());
-        result.setCurrentDate(currentDate);
+        result.setDateStart(event.getDateStart());
+        result.setDateEnd(event.getDateEnd());
         result.setTimeStart(event.getTimeStart());
         result.setTimeEnd(event.getTimeEnd());
         result.setComment(event.getComment());
+        return result;
+    }
+
+    public static List<EventDto> of (List<Event> list) {
+        List<EventDto> result = new ArrayList<>();
+        for (Event event : list) {
+            result.add(EventDto.of(event));
+        }
         return result;
     }
 
@@ -45,12 +57,20 @@ public class EventDto {
         this.name = name;
     }
 
-    public Date getCurrentDate() {
-        return currentDate;
+    public Date getDateStart() {
+        return dateStart;
     }
 
-    public void setCurrentDate(Date date) {
-        this.currentDate = date;
+    public void setDateStart(Date dateStart) {
+        this.dateStart = dateStart;
+    }
+
+    public Date getDateEnd() {
+        return dateEnd;
+    }
+
+    public void setDateEnd(Date dateEnd) {
+        this.dateEnd = dateEnd;
     }
 
     public Date getTimeStart() {
@@ -82,7 +102,6 @@ public class EventDto {
         return "EventDto{" +
                 "idTutor=" + idTutor +
                 ", name='" + name + '\'' +
-                ", currentDate=" + currentDate +
                 ", timeStart=" + timeStart +
                 ", timeEnd=" + timeEnd +
                 ", comment='" + comment + '\'' +

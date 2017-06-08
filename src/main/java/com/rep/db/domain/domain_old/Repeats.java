@@ -1,6 +1,7 @@
 package com.rep.db.domain.domain_old;
 
 import com.rep.db.domain.BaseEntity;
+import com.rep.db.domain.RepeatCode;
 
 import javax.persistence.*;
 import java.util.Date;

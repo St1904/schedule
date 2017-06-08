@@ -17,8 +17,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/rest/tutor")
 public class RestTutorController {
-    @Autowired
     private TutorService tutorService;
+
+    @Autowired
+    RestTutorController(TutorService tutorService) {
+        this.tutorService = tutorService;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<TutorDto>> listAllTutors() {
@@ -40,8 +44,8 @@ public class RestTutorController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<TutorDto> createTutor(@RequestBody TutorDto tutorDto) {
-        TutorDto saved = TutorDto.of(tutorService.createTutor(tutorDto));
+    public ResponseEntity<Tutor> createTutor(@RequestBody TutorDto tutorDto) {
+        Tutor saved = tutorService.createTutor(tutorDto);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
