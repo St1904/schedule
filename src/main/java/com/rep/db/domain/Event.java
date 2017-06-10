@@ -33,22 +33,22 @@ public class Event extends BaseEntity {
 
     @Temporal(value = TemporalType.DATE)
     @Column(name = "date_start", nullable = false)
-    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
     private Date dateStart;
 
     @Temporal(value = TemporalType.DATE)
     @Column(name = "date_end")
-    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
     private Date dateEnd;
 
-    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="HH:mm:ss")
     @Temporal(value = TemporalType.TIME)
     @Column(name = "time_end")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="HH:mm:ss", timezone = "Europe/Moscow")
     private Date timeEnd;
 
-    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="HH:mm:ss")
     @Temporal(value = TemporalType.TIME)
     @Column(name = "time_start")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="HH:mm:ss", timezone = "Europe/Moscow")
     private Date timeStart;
 
     @Column(name = "comment")

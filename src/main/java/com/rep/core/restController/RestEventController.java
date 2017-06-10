@@ -16,7 +16,6 @@ import java.util.List;
  */
 
 @RestController
-//@RequestMapping("/rest/event")
 public class RestEventController {
     private final EventService eventService;
 
@@ -47,8 +46,18 @@ public class RestEventController {
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = "/rest/tutor/{idTutor}/event/{id}")
+    public ResponseEntity<Event> eventById(@PathVariable("idTutor") Long idTutor,
+                                                     @PathVariable("id") Long id) {
+        Event event = eventService.findById(id);
+        if (event == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(event, HttpStatus.OK);
+    }
+
     @RequestMapping(method = RequestMethod.POST, path = "/rest/tutor/{idTutor}/event")
-    public ResponseEntity<Void> createEvene(@PathVariable("idTutor") Long idTutor,
+    public ResponseEntity<Void> createEvent(@PathVariable("idTutor") Long idTutor,
                                             @RequestBody Event event,
                                             UriComponentsBuilder ucBuilder) {
         event.setIdTutor(idTutor);
@@ -56,5 +65,29 @@ public class RestEventController {
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/rest/tutor/{idTutor}/event/{id}").buildAndExpand(saved.getIdTutor(), saved.getId()).toUri());
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/rest/tutor/{idTutor}/event/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Event> updateEvent(@PathVariable("idTutor") Long idTutor,
+                                                   @PathVariable("id") Long id,
+                                                   @RequestBody Event event) {
+        Event current = eventService.findById(id);
+        if (current == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        event.setIdTutor(idTutor);
+        event.setId(id);
+        current = eventService.updateEvent(event);
+        return new ResponseEntity<>(event, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/rest/tutor/{idTutor}/event/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Event> deleteEvent(@PathVariable("id") long id) {
+        Event current = eventService.findById(id);
+        if (current == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        eventService.deleteEventById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

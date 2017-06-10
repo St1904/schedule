@@ -42,4 +42,16 @@ public class EventService {
     public Event createEvent(Event event) {
         return eventRepository.saveAndFlush(event);
     }
+
+    public Event findById(Long id) {
+        return eventRepository.findOne(id);
+    }
+
+    public Event updateEvent(Event event) {
+        return eventRepository.saveAndFlush(event);
+    }
+
+    public void deleteEventById(Long id) {
+        eventRepository.delete(id);
+    }
 }
