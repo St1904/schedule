@@ -38,4 +38,8 @@ public class EventService {
 
         return result;
     }
+
+    public Event createEvent(Event event) {
+        return eventRepository.saveAndFlush(event);
+    }
 }

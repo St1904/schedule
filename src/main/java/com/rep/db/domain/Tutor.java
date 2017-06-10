@@ -54,21 +54,4 @@ public class Tutor extends BaseEntity {
     public void setStudents(Set<Student> students) {
         this.students = students;
     }
-
-
-    //TODO заменить на many-to-many
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "eTutor")
-//    private Set<Event> events = new HashSet<>();
-//
-//    public Set<Event> getEvents() {
-//        return events;
-//    }
-//
-//    public void setEvents(Set<Event> events) {
-//        this.events = events;
-//    }
-//
-//    public Tutor() {
-//    }
 }

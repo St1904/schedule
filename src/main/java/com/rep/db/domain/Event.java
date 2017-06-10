@@ -1,5 +1,6 @@
 package com.rep.db.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -13,11 +14,12 @@ import java.util.Date;
 @Table(name = "event")
 public class Event extends BaseEntity {
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "id_tutor",
+//    @ManyToOne
+    @Column(name = "id_tutor", nullable = false)
+/*    @JoinColumn(name = "id_tutor",
             nullable = false,
-            foreignKey = @ForeignKey(name = "fk_event_of_tutor"))
-    private Tutor eTutor;
+            foreignKey = @ForeignKey(name = "fk_event_of_tutor"))*/
+    private Long idTutor;
 
     @Column(name = "name",
             nullable = false)
@@ -31,29 +33,33 @@ public class Event extends BaseEntity {
 
     @Temporal(value = TemporalType.DATE)
     @Column(name = "date_start", nullable = false)
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
     private Date dateStart;
 
     @Temporal(value = TemporalType.DATE)
     @Column(name = "date_end")
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
     private Date dateEnd;
 
-    @Temporal(value = TemporalType.TIME)
-    @Column(name = "time_start")
-    private Date timeStart;
-
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="HH:mm:ss")
     @Temporal(value = TemporalType.TIME)
     @Column(name = "time_end")
     private Date timeEnd;
 
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="HH:mm:ss")
+    @Temporal(value = TemporalType.TIME)
+    @Column(name = "time_start")
+    private Date timeStart;
+
     @Column(name = "comment")
     private String comment;
 
-    public Tutor geteTutor() {
-        return eTutor;
+    public Long getIdTutor() {
+        return idTutor;
     }
 
-    public void seteTutor(Tutor eTutor) {
-        this.eTutor = eTutor;
+    public void setIdTutor(Long idTutor) {
+        this.idTutor = idTutor;
     }
 
     public String getName() {

@@ -11,7 +11,9 @@ import java.util.Date;
 public class DateTranslator {
     private Date date;
     private int dayOfWeek;
-    private final static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    private final static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private final static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+    private final static SimpleDateFormat jsonFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
     public static int dayOf(Date date) {
         Calendar calendar = Calendar.getInstance();
@@ -21,6 +23,10 @@ public class DateTranslator {
 
     public static Date nextDate(Date date, int n) {
         return new Date(date.getTime() + 1000L*60*60*24*n);
+    }
+
+    public static Date nextDay(Date date) {
+        return nextDate(date, 1);
     }
 
     public static int daysBetweenDates(Date start, Date finish) {
@@ -34,14 +40,14 @@ public class DateTranslator {
 
     public static Date strToDate(String stringDate) {
         try {
-            return simpleDateFormat.parse(stringDate);
+            return dateFormat.parse(stringDate);
         } catch (ParseException e) {
             return null;
         }
     }
 
     public static String dateToStr(Date date) {
-        return simpleDateFormat.format(date);
+        return dateFormat.format(date);
     }
 
     public DateTranslator() {

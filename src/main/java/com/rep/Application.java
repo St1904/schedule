@@ -30,6 +30,33 @@ public class Application {
     public static void main(String[] args) {
         ApplicationContext applicationContext = SpringApplication.run(Application.class, args);
 
+/*
+        EventChangeService eventChangeService = applicationContext.getBean(EventChangeService.class);
+        EventService eventService = applicationContext.getBean(EventService.class);
+
+        Date from = strToDate("2017-06-05");
+        Date to = strToDate("2017-06-20");
+
+        System.out.println(from);
+        System.out.println(to);
+
+        List<Event> events = eventService.findBetweenDates(1L, "2017-06-05", "2017-06-10");
+
+        System.out.println(events);
+
+        ArrayList<EventDto> result = new ArrayList<>();
+
+        Date current = new Date(from.getTime());
+        System.out.println(current);
+        for (Event event : events) {
+            while ((current.before(to) || current.getTime() == to.getTime())
+                    && (event.getDateEnd() == null || current.before(event.getDateEnd()) || current.getTime() == event.getDateEnd().getTime())) {
+                result.add(EventDto.of(event, current));
+                current = nextDay(current);
+            }
+        }
+*/
+
 //        System.out.println(DateTranslator.strToDate("17-06-2017"));
 
 

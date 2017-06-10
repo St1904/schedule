@@ -2,9 +2,9 @@ package com.rep.core.Dto;
 
 import com.rep.db.domain.Event;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
+import static com.rep.core.special.DateTranslator.dateToStr;
 
 /**
  * Created by sbt-sokolova-ts on 15.02.2017.
@@ -12,31 +12,29 @@ import java.util.List;
 public class EventDto {
     private Long idTutor;
     private String name;
-    private Date dateStart;
-    private Date dateEnd;
+    private String currentDate;
     private Date timeStart;
     private Date timeEnd;
     private String comment;
 
-    public static EventDto of(Event event) {
+    public static EventDto of(Event event, Date currentDate) {
         EventDto result = new EventDto();
-        result.setIdTutor(event.geteTutor().getId());
+        result.setIdTutor(event.getIdTutor());
         result.setName(event.getName());
-        result.setDateStart(event.getDateStart());
-        result.setDateEnd(event.getDateEnd());
+        result.setCurrentDate(dateToStr(currentDate));
         result.setTimeStart(event.getTimeStart());
         result.setTimeEnd(event.getTimeEnd());
         result.setComment(event.getComment());
         return result;
     }
-
+/*
     public static List<EventDto> of (List<Event> list) {
         List<EventDto> result = new ArrayList<>();
         for (Event event : list) {
             result.add(EventDto.of(event));
         }
         return result;
-    }
+    }*/
 
     public EventDto() {
     }
@@ -57,20 +55,12 @@ public class EventDto {
         this.name = name;
     }
 
-    public Date getDateStart() {
-        return dateStart;
+    public String getCurrentDate() {
+        return currentDate;
     }
 
-    public void setDateStart(Date dateStart) {
-        this.dateStart = dateStart;
-    }
-
-    public Date getDateEnd() {
-        return dateEnd;
-    }
-
-    public void setDateEnd(Date dateEnd) {
-        this.dateEnd = dateEnd;
+    public void setCurrentDate(String currentDate) {
+        this.currentDate = currentDate;
     }
 
     public Date getTimeStart() {
