@@ -29,7 +29,7 @@ public class RestContactNameController {
     public ResponseEntity<List<ContactName>> listAllContactNames() {
         List<ContactName> contactNames = contactNameService.listAllContactNames();
         if (contactNames.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(contactNames, HttpStatus.OK);
     }

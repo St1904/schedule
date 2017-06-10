@@ -1,5 +1,7 @@
 package com.rep.db.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,9 +13,11 @@ import java.util.Set;
 @Entity
 @Table(name = "student")
 public class Student extends BaseEntity {
-    @ManyToOne
-    @JoinColumn(name = "id_tutor", nullable = false, foreignKey = @ForeignKey(name = "fk_student_tutor"))
-    private Tutor sTutor;
+//    @ManyToOne
+//    @JoinColumn(name = "id_tutor", nullable = false, foreignKey = @ForeignKey(name = "fk_student_tutor"))
+    @JsonIgnore
+    @Column(name = "id_tutor", nullable = false)
+    private Long idTutor;
 
     @Column(name = "first_name", length = 45, nullable = false)
     private String firstName;
@@ -24,12 +28,12 @@ public class Student extends BaseEntity {
     @Column(name = "address")
     private String address;
 
-    public Tutor getTutor() {
-        return sTutor;
+    public Long getIdTutor() {
+        return idTutor;
     }
 
-    public void setTutor(Tutor tutor) {
-        this.sTutor = tutor;
+    public void setIdTutor(Long idTutor) {
+        this.idTutor = idTutor;
     }
 
     public String getFirstName() {
@@ -59,7 +63,7 @@ public class Student extends BaseEntity {
     @Override
     public String toString() {
         return "Student{" +
-                "tutor=" + sTutor +
+                "tutor=" + idTutor +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", address='" + address + '\'' +

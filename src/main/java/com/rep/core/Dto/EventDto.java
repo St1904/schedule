@@ -4,7 +4,7 @@ import com.rep.db.domain.Event;
 
 import java.util.Date;
 
-import static com.rep.core.special.DateTranslator.dateToStr;
+import static com.rep.core.special.DateUtil.dateToStr;
 
 /**
  * Created by sbt-sokolova-ts on 15.02.2017.

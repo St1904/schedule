@@ -20,7 +20,7 @@ public class StudentDto {
     public static StudentDto of(Student student) {
         StudentDto result = new StudentDto();
         result.setId(student.getId());
-        result.setIdTutor(student.getTutor().getId());
+        result.setIdTutor(student.getIdTutor());
         result.setFirstName(student.getFirstName());
         result.setLastName(student.getLastName() == null ? "" : student.getLastName());
         result.setAddress(student.getAddress() == null ? "" : student.getAddress());

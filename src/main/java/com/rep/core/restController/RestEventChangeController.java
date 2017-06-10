@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.rep.core.special.DateTranslator.strToDate;
+import static com.rep.core.special.DateUtil.strToDate;
 
 /**
  * Created by St on 10.06.2017.

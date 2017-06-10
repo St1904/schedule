@@ -1,10 +1,9 @@
 package com.rep.db.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  * Created by sbt-sokolova-ts on 07.02.2017.
@@ -42,16 +41,18 @@ public class Tutor extends BaseEntity {
                 ", address='" + address + '\'' +
                 '}';
     }
+/*
 
     @JsonIgnore
-    @OneToMany(mappedBy = "sTutor")
+    @OneToMany(mappedBy = "idTutor")
     private Set<Student> students = new HashSet<>();
-
+*/
+/*
     public Set<Student> getStudents() {
         return students;
     }
 
     public void setStudents(Set<Student> students) {
         this.students = students;
-    }
+    }*/
 }
