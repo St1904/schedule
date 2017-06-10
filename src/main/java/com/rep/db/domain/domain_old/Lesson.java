@@ -1,6 +1,7 @@
 package com.rep.db.domain.domain_old;
 
 import com.rep.db.domain.BaseEntity;
+import com.rep.db.domain.Event;
 import com.rep.db.domain.Student;
 import com.rep.db.domain.Subject;
 

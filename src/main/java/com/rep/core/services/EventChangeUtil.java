@@ -9,7 +9,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-import static com.rep.core.special.DateTranslator.nextDay;
+import static com.rep.core.special.DateUtil.nextDay;
 
 /**
  * Created by St on 10.06.2017.

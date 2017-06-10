@@ -10,7 +10,7 @@
 # INSERT INTO event(id_tutor, name, code, date_start, date_end, time_start, time_end, comment) VALUE (1, "Завтрак", "DAILY", "2017-06-07", "2017-06-12", "11:00:00", "12:00:00", "ежедневное событие 1");
 # INSERT INTO event(id_tutor, name, code, date_start, date_end, time_start, time_end, comment) VALUE (1, "бесконечный завтрак", "DAILY", "2017-06-07", null, "11:00:00", "12:00:00", "ежедневное событие 1");
 
-
+# INSERT INTO student (id_tutor, first_name, last_name, address) VALUE (1, 'Аня', 'Смолина', 'наб. Черной речки, д. 3, кв. NN');
 
 
 

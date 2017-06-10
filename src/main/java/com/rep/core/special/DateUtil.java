@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * Created by sbt-sokolova-ts on 16.02.2017.
  */
-public class DateTranslator {
+public class DateUtil {
     private Date date;
     private int dayOfWeek;
     private final static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -50,10 +50,10 @@ public class DateTranslator {
         return dateFormat.format(date);
     }
 
-    public DateTranslator() {
+    public DateUtil() {
     }
 
-    public DateTranslator(Date date, int dayOfWeek) {
+    public DateUtil(Date date, int dayOfWeek) {
         this.date = date;
         this.dayOfWeek = dayOfWeek;
     }
