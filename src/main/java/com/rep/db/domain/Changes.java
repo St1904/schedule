@@ -1,6 +1,4 @@
-package com.rep.db.domain.domain_old;
-
-import com.rep.db.domain.BaseEntity;
+package com.rep.db.domain;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,12 +7,12 @@ import java.util.Date;
  * Created by sbt-sokolova-ts on 07.02.2017.
  */
 
-//@Entity
-//@Table(name = "changes")
+@Entity
+@Table(name = "changes")
 public class Changes extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "id_event", nullable = false, foreignKey = @ForeignKey(name = "fk_changes_of_event"))
-    private Event event;
+    private com.rep.db.domain.Event event;
 
     @Temporal(value = TemporalType.DATE)
     @Column(name = "date", nullable = false)
