@@ -1,7 +1,5 @@
 package com.rep.db.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 /**
@@ -11,7 +9,7 @@ import javax.persistence.*;
 @MappedSuperclass
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class BaseEntity {
-    @JsonIgnore
+//    @JsonIgnore
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
