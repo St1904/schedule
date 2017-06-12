@@ -2,15 +2,16 @@
 
 # INSERT INTO contact_name (name) VALUES ("мобильный телефон"), ("вконтакте");
 
-# INSERT INTO contact (value, id_contact_name) VALUE ('89007654321', (SELECT id AS contact_name_id FROM contact_name WHERE name='мобильный телефон'));
-# INSERT INTO contact (value, id_contact_name) VALUE ('89001234567', (SELECT id AS contact_name_id FROM contact_name WHERE name='мобильный телефон'));
+# INSERT INTO student (id_tutor, first_name, last_name, address) VALUE (1, 'Аня', 'Смолина', 'наб. Черной речки, д. 3, кв. NN');
+
+# INSERT INTO contact (value, id_contact_name, id_student) VALUE ('89007654321', 1, 1);
+# INSERT INTO contact (value, id_contact_name, id_student) VALUE ('vk.ru/id12345', 2, 1);
 
 # INSERT INTO subject (name) VALUES ('Математика'), ("Физика"), ("Литература");
 
 # INSERT INTO event(id_tutor, name, code, date_start, date_end, time_start, time_end, comment) VALUE (1, "Завтрак", "DAILY", "2017-06-07", "2017-06-12", "11:00:00", "12:00:00", "ежедневное событие 1");
 # INSERT INTO event(id_tutor, name, code, date_start, date_end, time_start, time_end, comment) VALUE (1, "бесконечный завтрак", "DAILY", "2017-06-07", null, "11:00:00", "12:00:00", "ежедневное событие 1");
 
-# INSERT INTO student (id_tutor, first_name, last_name, address) VALUE (1, 'Аня', 'Смолина', 'наб. Черной речки, д. 3, кв. NN');
 
 
 

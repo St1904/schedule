@@ -70,12 +70,7 @@ public class Student extends BaseEntity {
                 '}';
     }
 
-    @ManyToMany
-    @JoinTable(name = "student_contact",
-            joinColumns = @JoinColumn(name = "id_student"),
-            inverseJoinColumns = @JoinColumn(name = "id_contact"),
-            foreignKey = @ForeignKey(name = "fk_student_contact"),
-            inverseForeignKey = @ForeignKey(name = "fk_contact_student"))
+    @OneToMany(mappedBy = "idStudent")
     private Set<Contact> contacts = new HashSet<Contact>();
 
     public Set<Contact> getContacts() {
