@@ -80,11 +80,11 @@ public class RestEventController {
         event.setIdTutor(idTutor);
         event.setId(id);
         found = eventService.updateEvent(event);
-        return new ResponseEntity<>(event, OK);
+        return new ResponseEntity<>(found, OK);
     }
 
     @RequestMapping(method = DELETE, value = "/rest/tutor/{idTutor}/event/{id}")
-    public ResponseEntity<Event> deleteEvent(@PathVariable("idTutor") Long idTutor,
+    public ResponseEntity<Void> deleteEvent(@PathVariable("idTutor") Long idTutor,
                                              @PathVariable("id") long id) {
         Event found = eventService.findById(id);
         if (found == null || !found.getIdTutor().equals(idTutor)) {

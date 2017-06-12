@@ -9,5 +9,5 @@ import java.util.List;
  * Created by sbt-sokolova-ts on 08.02.2017.
  */
 public interface ContactRepository extends JpaRepository<Contact, Long> {
-    List<Contact> findByValue(String value);
+    List<Contact> findByIdStudent(Long idStudent);
 }

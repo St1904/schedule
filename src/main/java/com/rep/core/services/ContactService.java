@@ -1,6 +1,5 @@
 package com.rep.core.services;
 
-import com.rep.core.Dto.ContactDto;
 import com.rep.db.domain.Contact;
 import com.rep.db.domain.ContactName;
 import com.rep.db.repository.ContactNameRepository;
@@ -25,15 +24,39 @@ public class ContactService {
         this.contactNameRepository = contactNameRepository;
     }
 
-    public List<Contact> listAllContacts() {
-        return contactRepository.findAll();
-    }
+    //    public List<Contact> findAllContacts() {
+//        return contactRepository.findAll();
+//    }
 
-    public Contact findOne(long id) {
+    public Contact findById(Long id) {
         return contactRepository.findOne(id);
     }
 
-    public ContactDto createContact(ContactDto contactDto) {
+    public List<Contact> findByIdStudent(Long idStudent) {
+        return contactRepository.findByIdStudent(idStudent);
+    }
+
+    public Contact createContact(Contact contact) {
+        ContactName contactName = contact.getContactName();
+        if (contactNameRepository.findByName(contactName.getName()) == null) {
+            contact.setContactName(contactNameRepository.saveAndFlush(contactName));
+        }
+        return contactRepository.saveAndFlush(contact);
+    }
+
+    public Contact updateContact(Contact contact) {
+        ContactName contactName = contact.getContactName();
+        if (contactNameRepository.findByName(contactName.getName()) == null) {
+            contact.setContactName(contactNameRepository.saveAndFlush(contactName));
+        }
+        return contactRepository.saveAndFlush(contact);
+    }
+
+    public void deleteContact(Long id) {
+        contactRepository.delete(id);
+    }
+
+/*    public ContactDto createContact(ContactDto contactDto) {
         ContactName contactName = new ContactName();
         if (contactDto.getIdContactName() == null) {
             contactName = contactNameRepository.saveAndFlush(new ContactName(contactDto.getContactName()));
@@ -49,5 +72,5 @@ public class ContactService {
 
         Contact saved = contactRepository.saveAndFlush(contact);
         return ContactDto.of(saved);
-    }
+    }*/
 }
