@@ -29,7 +29,7 @@ public class RestContactNameController {
 
     @RequestMapping(method = GET, path = "/rest/tutor/{idTutor}/contactname")
     public ResponseEntity<List<ContactName>> findAllContactNames(@PathVariable("idTutor") Long idTutor) {
-        List<ContactName> contactNames = contactNameService.findAllContactNamesByIdTutor(idTutor);
+        List<ContactName> contactNames = contactNameService.findByIdTutor(idTutor);
         if (contactNames.isEmpty()) {
             return new ResponseEntity<>(NOT_FOUND);
         }

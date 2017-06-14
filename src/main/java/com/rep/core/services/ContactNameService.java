@@ -24,7 +24,7 @@ public class ContactNameService {
         return contactNameRepository.findAll();
     }
 
-    public List<ContactName> findAllContactNamesByIdTutor(Long idTutor) {
+    public List<ContactName> findByIdTutor(Long idTutor) {
         return contactNameRepository.findByIdTutor(idTutor);
     }
 
