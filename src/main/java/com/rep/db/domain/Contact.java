@@ -12,14 +12,20 @@ import javax.persistence.*;
 @Table(name = "contact")
 public class Contact extends BaseEntity {
     @JsonIgnore
-    @Column(name = "id_student", nullable = false)
+    @Column(name = "id_student",
+            nullable = false)
     private Long idStudent;
 
     @ManyToOne
-    @JoinColumn(name = "id_contactName", nullable = false, foreignKey = @ForeignKey(name = "fk_contact_contactName"))
+    @JoinColumn(name = "id_contactName",
+            nullable = false,
+            foreignKey = @ForeignKey(
+                    name = "fk_contact_contactName"))
     private ContactName contactName;
 
-    @Column(name = "value", length = 100, nullable = false)
+    @Column(name = "value",
+            nullable = false,
+            length = 100)
     private String value;
 
     public Long getIdStudent() {

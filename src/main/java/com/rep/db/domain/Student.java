@@ -13,16 +13,18 @@ import java.util.Set;
 @Entity
 @Table(name = "student")
 public class Student extends BaseEntity {
-//    @ManyToOne
-//    @JoinColumn(name = "id_tutor", nullable = false, foreignKey = @ForeignKey(name = "fk_student_tutor"))
     @JsonIgnore
-    @Column(name = "id_tutor", nullable = false)
+    @Column(name = "id_tutor",
+            nullable = false)
     private Long idTutor;
 
-    @Column(name = "first_name", length = 45, nullable = false)
+    @Column(name = "first_name",
+            length = 45,
+            nullable = false)
     private String firstName;
 
-    @Column(name = "last_name", length = 45)
+    @Column(name = "last_name",
+            length = 45)
     private String lastName;
 
     @Column(name = "address")

@@ -10,7 +10,10 @@ import javax.persistence.UniqueConstraint;
  */
 
 @Entity
-@Table(name = "tutor", uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "address"})})
+@Table(name = "tutor",
+        uniqueConstraints = @UniqueConstraint(
+                name = "uk_tutor_name_address",
+                columnNames = {"name", "address"}))
 public class Tutor extends BaseEntity {
     @Column(name = "name")
     private String name;
