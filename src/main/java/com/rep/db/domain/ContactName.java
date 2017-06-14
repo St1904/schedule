@@ -10,10 +10,21 @@ import javax.persistence.UniqueConstraint;
  */
 
 @Entity
-@Table(name = "contact_name", uniqueConstraints = @UniqueConstraint(name = "uk_contact_name_name", columnNames = "name"))
+@Table(name = "contact_name", uniqueConstraints = @UniqueConstraint(name = "uk_contact_name_id_tutor_name", columnNames = {"id_tutor", "name"}))
 public class ContactName extends BaseEntity {
+    @Column(name = "id_tutor", nullable = false)
+    private Long idTutor;
+
     @Column(name = "name", nullable = false)
     private String name;
+
+    public Long getIdTutor() {
+        return idTutor;
+    }
+
+    public void setIdTutor(Long idTutor) {
+        this.idTutor = idTutor;
+    }
 
     public String getName() {
         return name;
