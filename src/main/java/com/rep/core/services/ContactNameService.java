@@ -24,6 +24,10 @@ public class ContactNameService {
         return contactNameRepository.findAll();
     }
 
+    public List<ContactName> findAllContactNamesByIdTutor(Long idTutor) {
+        return contactNameRepository.findByIdTutor(idTutor);
+    }
+
     public ContactName findById(long id) {
         return contactNameRepository.findOne(id);
     }
@@ -32,7 +36,7 @@ public class ContactNameService {
         return contactNameRepository.findByName(name);
     }
 
-    public ContactName createContactNameByName(ContactName contactName) {
+    public ContactName createContactName(ContactName contactName) {
         ContactName found = findByName(contactName.getName());
         if (found != null) return found;
         return contactNameRepository.saveAndFlush(contactName);
@@ -42,8 +46,8 @@ public class ContactNameService {
         return contactNameRepository.exists(id);
     }
 
-    public void updateContactName(ContactName contactName) {
-        contactNameRepository.saveAndFlush(contactName);
+    public ContactName updateContactName(ContactName contactName) {
+        return contactNameRepository.saveAndFlush(contactName);
     }
 
     public void deleteContactName(long id) {
