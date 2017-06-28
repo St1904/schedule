@@ -16,7 +16,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
  * Created by St on 10.06.2017.
  */
 
+@CrossOrigin
 @RestController
+@RequestMapping("/rest/student")
 public class RestStudentController {
     private final StudentService studentService;
 
@@ -24,8 +26,8 @@ public class RestStudentController {
         this.studentService = studentService;
     }
 
-    @RequestMapping(method = GET, path = "/rest/tutor/{idTutor}/student/{id}")
-    public ResponseEntity<Student> findById(@PathVariable("idTutor") Long idTutor,
+    @RequestMapping(method = GET, path = "/{id}")
+    public ResponseEntity<Student> findById(@RequestHeader("idTutor") Long idTutor,
                                             @PathVariable("id") Long id) {
         Student found = studentService.findById(id);
         if (found == null || !found.getIdTutor().equals(idTutor)) {
@@ -34,8 +36,8 @@ public class RestStudentController {
         return new ResponseEntity<Student>(found, OK);
     }
 
-    @RequestMapping(method = GET, path = "/rest/tutor/{idTutor}/student")
-    public ResponseEntity<List<Student>> findByIdTutor(@PathVariable("idTutor") Long idTutor) {
+    @RequestMapping(method = GET)
+    public ResponseEntity<List<Student>> findByIdTutor(@RequestHeader("idTutor") Long idTutor) {
         List<Student> students = studentService.findByIdTutor(idTutor);
         if (students.isEmpty()) {
             return new ResponseEntity<>(NOT_FOUND);
@@ -43,8 +45,8 @@ public class RestStudentController {
         return new ResponseEntity<>(students, OK);
     }
 
-    @RequestMapping(method = GET, path = "/rest/tutor/{idTutor}/student", params = "firstName")
-    public ResponseEntity<List<Student>> findByName(@PathVariable("idTutor") Long idTutor,
+    @RequestMapping(method = GET, params = "firstName")
+    public ResponseEntity<List<Student>> findByName(@RequestHeader("idTutor") Long idTutor,
                                                     @RequestParam("firstName") String firstName) {
         List<Student> students = studentService.findByIdTutorAndFirstName(idTutor, firstName);
         if (students.isEmpty()) {
@@ -53,19 +55,19 @@ public class RestStudentController {
         return new ResponseEntity<>(students, OK);
     }
 
-    @RequestMapping(method = POST, path = "/rest/tutor/{idTutor}/student")
-    public ResponseEntity<Student> createStudent(@PathVariable("idTutor") Long idTutor,
+    @RequestMapping(method = POST)
+    public ResponseEntity<Student> createStudent(@RequestHeader("idTutor") Long idTutor,
                                                  @RequestBody Student student,
                                                  UriComponentsBuilder builder) {
         student.setIdTutor(idTutor);
         Student saved = studentService.createStudent(student);
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(builder.path("/rest/tutor/{idTutor}/student/{id}").buildAndExpand(saved.getIdTutor(), saved.getId()).toUri());
+        headers.setLocation(builder.path("/rest/student/{id}").buildAndExpand(saved.getIdTutor(), saved.getId()).toUri());
         return new ResponseEntity<Student>(headers, CREATED);
     }
 
-    @RequestMapping(method = PUT, path = "/rest/tutor/{idTutor}/student/{id}")
-    public ResponseEntity<Student> updateStudent(@PathVariable("idTutor") Long idTutor,
+    @RequestMapping(method = PUT, path = "/{id}")
+    public ResponseEntity<Student> updateStudent(@RequestHeader("idTutor") Long idTutor,
                                                  @PathVariable("id") Long id,
                                                  @RequestBody Student student) {
         Student found = studentService.findById(id);
@@ -78,8 +80,8 @@ public class RestStudentController {
         return new ResponseEntity<>(found, OK);
     }
 
-    @RequestMapping(method = DELETE, path = "/rest/tutor/{idTutor}/student/{id}")
-    public ResponseEntity<Student> deleteStudent(@PathVariable("idTutor") Long idTutor,
+    @RequestMapping(method = DELETE, path = "/rest/student/{id}")
+    public ResponseEntity<Student> deleteStudent(@RequestHeader("idTutor") Long idTutor,
                                                  @PathVariable("id") Long id) {
         Student found = studentService.findById(id);
         if (found == null || !found.getIdTutor().equals(idTutor)) {

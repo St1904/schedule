@@ -17,8 +17,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
  * Created by sbt-sokolova-ts on 14.02.2017.
  */
 
+@CrossOrigin
 @RestController
-//@RequestMapping("/rest/contactname")
+@RequestMapping("/rest/contactname")
 public class RestContactNameController {
     private ContactNameService contactNameService;
 
@@ -27,8 +28,8 @@ public class RestContactNameController {
         this.contactNameService = contactNameService;
     }
 
-    @RequestMapping(method = GET, path = "/rest/tutor/{idTutor}/contactname")
-    public ResponseEntity<List<ContactName>> findAllContactNames(@PathVariable("idTutor") Long idTutor) {
+    @RequestMapping(method = GET)
+    public ResponseEntity<List<ContactName>> findAllContactNames(@RequestHeader("idTutor") Long idTutor) {
         List<ContactName> contactNames = contactNameService.findByIdTutor(idTutor);
         if (contactNames.isEmpty()) {
             return new ResponseEntity<>(NOT_FOUND);
@@ -36,8 +37,8 @@ public class RestContactNameController {
         return new ResponseEntity<>(contactNames, OK);
     }
 
-    @RequestMapping(method = GET, path = "/rest/tutor/{idTutor}/contactname/{id}")
-    public ResponseEntity<ContactName> getContactName(@PathVariable("idTutor") Long idTutor,
+    @RequestMapping(method = GET, path = "/{id}")
+    public ResponseEntity<ContactName> getContactName(@RequestHeader("idTutor") Long idTutor,
                                                       @PathVariable("id") Long id) {
         ContactName found = contactNameService.findById(id);
         if (found == null || !found.getIdTutor().equals(idTutor)) {
@@ -47,8 +48,8 @@ public class RestContactNameController {
     }
 
     //not sure it's necessary
-    @RequestMapping(method = GET, path = "/rest/tutor/{idTutor}/contactname", params = "name")
-    public ResponseEntity<ContactName> getContactNameByName(@PathVariable("idTutor") Long idTutor,
+    @RequestMapping(method = GET, params = "name")
+    public ResponseEntity<ContactName> getContactNameByName(@RequestHeader("idTutor") Long idTutor,
                                                             @RequestParam("name") String name) {
         ContactName found = contactNameService.findByName(name);
         if (found == null || !found.getIdTutor().equals(idTutor)) {
@@ -57,8 +58,8 @@ public class RestContactNameController {
         return new ResponseEntity<>(found, OK);
     }
 
-    @RequestMapping(method = POST, path = "/rest/tutor/{idTutor}/contactname")
-    public ResponseEntity<Void> createContactName(@PathVariable("idTutor") Long idTutor,
+    @RequestMapping(method = POST)
+    public ResponseEntity<Void> createContactName(@RequestHeader("idTutor") Long idTutor,
                                                   @RequestBody ContactName contactName,
                                                   UriComponentsBuilder ucBuilder) {
         contactName.setIdTutor(idTutor);
@@ -68,8 +69,8 @@ public class RestContactNameController {
         return new ResponseEntity<>(headers, CREATED);
     }
 
-    @RequestMapping(method = PUT, path = "/rest/tutor/{idTutor}/contactname/{id}")
-    public ResponseEntity<ContactName> updateContactName(@PathVariable("idTutor") Long idTutor,
+    @RequestMapping(method = PUT, path = "/{id}")
+    public ResponseEntity<ContactName> updateContactName(@RequestHeader("idTutor") Long idTutor,
                                                          @PathVariable("id") Long id,
                                                          @RequestBody ContactName contactName) {
         ContactName found = contactNameService.findById(id);
@@ -82,7 +83,7 @@ public class RestContactNameController {
         return new ResponseEntity<>(found, OK);
     }
 
-    @RequestMapping(method = DELETE, path = "/rest/tutor/{idTutor}/contactname/{id}")
+    @RequestMapping(method = DELETE, path = "/{id}")
     public ResponseEntity<ContactName> deleteContactName(@PathVariable("idTutor") Long idTutor,
                                                          @PathVariable("id") Long id) {
         ContactName found = contactNameService.findById(id);

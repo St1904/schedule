@@ -14,6 +14,7 @@ import java.util.List;
  * Created by St on 05.06.2017.
  */
 
+@CrossOrigin
 @RestController
 @RequestMapping("/rest/tutor")
 public class RestTutorController {
