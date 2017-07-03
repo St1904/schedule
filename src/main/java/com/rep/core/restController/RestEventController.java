@@ -18,6 +18,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
  */
 
 @RestController
+@RequestMapping("/rest/event")
 public class RestEventController {
     private final EventService eventService;
 
@@ -26,8 +27,8 @@ public class RestEventController {
         this.eventService = eventService;
     }
 
-    @RequestMapping(method = GET, path = "/rest/tutor/{idTutor}/event")
-    public ResponseEntity<List<Event>> listAllEventsByIdTutor(@PathVariable("idTutor") Long idTutor) {
+    @RequestMapping(method = GET)
+    public ResponseEntity<List<Event>> listAllEventsByIdTutor(@RequestHeader("idTutor") Long idTutor) {
         List<Event> events;
         events = eventService.findAllEventsByIdTutor(idTutor);
         if (events.isEmpty()) {
@@ -36,10 +37,10 @@ public class RestEventController {
         return new ResponseEntity<>(events, OK);
     }
 
-    @RequestMapping(method = GET, path = "/rest/tutor/{idTutor}/event", params = {"from", "to"})
-    public ResponseEntity<List<Event>> listAllEvents(@PathVariable("idTutor") Long idTutor,
-                                                        @RequestParam(value = "from") String from,
-                                                        @RequestParam(value = "to") String to) {
+    @RequestMapping(method = GET, params = {"from", "to"})
+    public ResponseEntity<List<Event>> listAllEvents(@RequestHeader("idTutor") Long idTutor,
+                                                     @RequestParam(value = "from") String from,
+                                                     @RequestParam(value = "to") String to) {
         List<Event> events;
         events = eventService.findBetweenDates(idTutor, from, to);
         if (events.isEmpty()) {
@@ -48,9 +49,9 @@ public class RestEventController {
         return new ResponseEntity<>(events, OK);
     }
 
-    @RequestMapping(method = GET, path = "/rest/tutor/{idTutor}/event/{id}")
-    public ResponseEntity<Event> eventById(@PathVariable("idTutor") Long idTutor,
-                                                     @PathVariable("id") Long id) {
+    @RequestMapping(method = GET, path = "/{id}")
+    public ResponseEntity<Event> eventById(@RequestHeader("idTutor") Long idTutor,
+                                           @PathVariable("id") Long id) {
         Event found = eventService.findById(id);
         if (found == null || !found.getIdTutor().equals(idTutor)) {
             return new ResponseEntity<>(NOT_FOUND);
@@ -58,21 +59,21 @@ public class RestEventController {
         return new ResponseEntity<>(found, OK);
     }
 
-    @RequestMapping(method = POST, path = "/rest/tutor/{idTutor}/event")
-    public ResponseEntity<Void> createEvent(@PathVariable("idTutor") Long idTutor,
+    @RequestMapping(method = POST)
+    public ResponseEntity<Void> createEvent(@RequestHeader("idTutor") Long idTutor,
                                             @RequestBody Event event,
                                             UriComponentsBuilder ucBuilder) {
         event.setIdTutor(idTutor);
         Event saved = eventService.createEvent(event);
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/rest/tutor/{idTutor}/event/{id}").buildAndExpand(saved.getIdTutor(), saved.getId()).toUri());
+        headers.setLocation(ucBuilder.path("/rest/event/{id}").buildAndExpand(saved.getIdTutor(), saved.getId()).toUri());
         return new ResponseEntity<>(headers, CREATED);
     }
 
-    @RequestMapping(method = PUT, value = "/rest/tutor/{idTutor}/event/{id}")
-    public ResponseEntity<Event> updateEvent(@PathVariable("idTutor") Long idTutor,
-                                                   @PathVariable("id") Long id,
-                                                   @RequestBody Event event) {
+    @RequestMapping(method = PUT, value = "/{id}")
+    public ResponseEntity<Event> updateEvent(@RequestHeader("idTutor") Long idTutor,
+                                             @PathVariable("id") Long id,
+                                             @RequestBody Event event) {
         Event found = eventService.findById(id);
         if (found == null || !found.getIdTutor().equals(idTutor)) {
             return new ResponseEntity<>(NOT_FOUND);
@@ -83,9 +84,9 @@ public class RestEventController {
         return new ResponseEntity<>(found, OK);
     }
 
-    @RequestMapping(method = DELETE, value = "/rest/tutor/{idTutor}/event/{id}")
-    public ResponseEntity<Void> deleteEvent(@PathVariable("idTutor") Long idTutor,
-                                             @PathVariable("id") long id) {
+    @RequestMapping(method = DELETE, value = "/{id}")
+    public ResponseEntity<Void> deleteEvent(@RequestHeader("idTutor") Long idTutor,
+                                            @PathVariable("id") long id) {
         Event found = eventService.findById(id);
         if (found == null || !found.getIdTutor().equals(idTutor)) {
             return new ResponseEntity<>(NOT_FOUND);

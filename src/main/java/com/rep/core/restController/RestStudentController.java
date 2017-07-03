@@ -80,7 +80,7 @@ public class RestStudentController {
         return new ResponseEntity<>(found, OK);
     }
 
-    @RequestMapping(method = DELETE, path = "/rest/student/{id}")
+    @RequestMapping(method = DELETE, path = "/{id}")
     public ResponseEntity<Student> deleteStudent(@RequestHeader("idTutor") Long idTutor,
                                                  @PathVariable("id") Long id) {
         Student found = studentService.findById(id);
