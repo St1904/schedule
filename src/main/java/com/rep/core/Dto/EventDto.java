@@ -1,10 +1,9 @@
 package com.rep.core.Dto;
 
+import com.rep.core.special.DateUtil;
 import com.rep.db.domain.Event;
 
 import java.util.Date;
-
-import static com.rep.core.special.DateUtil.dateToStr;
 
 /**
  * Created by sbt-sokolova-ts on 15.02.2017.
@@ -21,7 +20,7 @@ public class EventDto {
         EventDto result = new EventDto();
         result.setIdTutor(event.getIdTutor());
         result.setName(event.getName());
-        result.setCurrentDate(dateToStr(currentDate));
+        result.setCurrentDate(DateUtil.toString(currentDate));
         result.setTimeStart(event.getTimeStart());
         result.setTimeEnd(event.getTimeEnd());
         result.setComment(event.getComment());

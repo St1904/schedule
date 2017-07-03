@@ -34,8 +34,8 @@ public class Application {
         EventChangeService eventChangeService = applicationContext.getBean(EventChangeService.class);
         EventService eventService = applicationContext.getBean(EventService.class);
 
-        Date from = strToDate("2017-06-05");
-        Date to = strToDate("2017-06-20");
+        Date from = toDate("2017-06-05");
+        Date to = toDate("2017-06-20");
 
         System.out.println(from);
         System.out.println(to);
@@ -57,7 +57,7 @@ public class Application {
         }
 */
 
-//        System.out.println(DateTranslator.strToDate("17-06-2017"));
+//        System.out.println(DateTranslator.toDate("17-06-2017"));
 
 
 

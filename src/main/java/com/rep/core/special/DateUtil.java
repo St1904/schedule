@@ -38,7 +38,7 @@ public class DateUtil {
         return nextDate(start, (7 - dayStart + day) % 7);
     }
 
-    public static Date strToDate(String stringDate) {
+    public static Date toDate(String stringDate) {
         try {
             return dateFormat.parse(stringDate);
         } catch (ParseException e) {
@@ -46,7 +46,7 @@ public class DateUtil {
         }
     }
 
-    public static String dateToStr(Date date) {
+    public static String toString(Date date) {
         return dateFormat.format(date);
     }
 

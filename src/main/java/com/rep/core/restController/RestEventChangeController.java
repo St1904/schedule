@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.rep.core.special.DateUtil.strToDate;
+import static com.rep.core.special.DateUtil.toDate;
 
 /**
  * Created by St on 10.06.2017.
@@ -36,7 +36,7 @@ public class RestEventChangeController {
         if (events.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        List<EventDto> dtos = eventChangeUtil.formatAllEvents(events, strToDate(from), strToDate(to));
+        List<EventDto> dtos = eventChangeUtil.formatAllEvents(events, toDate(from), toDate(to));
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
 }
