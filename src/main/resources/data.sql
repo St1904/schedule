@@ -11,6 +11,13 @@
 
 # INSERT INTO event(id_tutor, name, code, date_start, date_end, time_start, time_end, comment) VALUE (1, "Завтрак", "DAILY", "2017-06-07", "2017-06-12", "11:00:00", "12:00:00", "ежедневное событие 1");
 # INSERT INTO event(id_tutor, name, code, date_start, date_end, time_start, time_end, comment) VALUE (1, "бесконечный завтрак", "DAILY", "2017-06-07", null, "11:00:00", "12:00:00", "ежедневное событие 1");
+# INSERT INTO event(id_tutor, name, code, date_start, date_end, time_start, time_end, comment) VALUE (1, "День рождения М", "YEARLY", "2017-07-05", null, null, null, "День рождения Маши");
+# INSERT INTO event(id_tutor, name, code, date_start, date_end, time_start, time_end, comment) VALUE (1, "День рождения И", "YEARLY", "2017-07-30", null, null, null, "День рождения Ивана");
+# INSERT INTO event(id_tutor, name, code, date_start, date_end, time_start, time_end, comment) VALUE (1, "Занятие с Аней", "WEEKLY", "2017-06-01", null, "16:00:00", "17:30:00", "Аня М. математика");
+# INSERT INTO event(id_tutor, name, code, date_start, date_end, time_start, time_end, comment) VALUE (1, "Занятие с Аней", "WEEKLY", "2017-06-04", null, "16:00:00", "17:30:00", "Аня М. математика");
+# INSERT INTO event(id_tutor, name, code, date_start, date_end, time_start, time_end, comment) VALUE (1, "Занятие с Лизой", "WEEKLY", "2017-06-02", null, "17:00:00", "18:30:00", "Лиза А. математика");
+# INSERT INTO event(id_tutor, name, code, date_start, date_end, time_start, time_end, comment) VALUE (1, "Занятие с Лизой", "WEEKLY", "2017-06-05", null, "17:00:00", "18:30:00", "Лиза А. математика");
+
 
 
 
