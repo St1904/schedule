@@ -9,7 +9,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-import static com.rep.core.special.DateUtil.nextDay;
+import static com.rep.core.special.DateUtil.*;
 
 /**
  * Created by St on 10.06.2017.
@@ -24,7 +24,7 @@ public class EventChangeUtil {
         for (Event event : events) {
             switch (event.getRepeatCode()) {
                 case DAILY:
-                    current = new Date(from.getTime());
+                    current = new Date(from.after(event.getDateStart()) ? from.getTime() : event.getDateStart().getTime());
                     while ((current.before(to) || current.getTime() == to.getTime())
                             && (event.getDateEnd() == null || current.before(event.getDateEnd()) || current.getTime() == event.getDateEnd().getTime())) {
                         result.add(EventDto.of(event, current));
@@ -32,12 +32,43 @@ public class EventChangeUtil {
                     }
                     break;
                 case NEVER:
+                    result.add(EventDto.of(event, event.getDateStart()));
                     break;
                 case WEEKLY:
+                    current = event.getDateStart();
+                    while ((current.before(to) || current.getTime() == to.getTime())
+                            && (current.before(from) || current.getTime() == from.getTime())) {
+                        current = nextWeek(current);
+                    }
+                    while ((current.before(to) || current.getTime() == to.getTime())
+                            && (event.getDateEnd() == null || current.before(event.getDateEnd()) || current.getTime() == event.getDateEnd().getTime())) {
+                        result.add(EventDto.of(event, current));
+                        current = nextWeek(current);
+                    }
                     break;
                 case YEARLY:
+                    current = event.getDateStart();
+                    while ((current.before(to) || current.getTime() == to.getTime())
+                            && (current.before(from) || current.getTime() == from.getTime())) {
+                        current = nextYear(current);
+                    }
+                    while ((current.before(to) || current.getTime() == to.getTime())
+                            && (event.getDateEnd() == null || current.before(event.getDateEnd()) || current.getTime() == event.getDateEnd().getTime())) {
+                        result.add(EventDto.of(event, current));
+                        current = nextYear(current);
+                    }
                     break;
                 case MONTHLY:
+                    current = event.getDateStart();
+                    while ((current.before(to) || current.getTime() == to.getTime())
+                            && (current.before(from) || current.getTime() == from.getTime())) {
+                        current = nextMonth(current);
+                    }
+                    while ((current.before(to) || current.getTime() == to.getTime())
+                            && (event.getDateEnd() == null || current.before(event.getDateEnd()) || current.getTime() == event.getDateEnd().getTime())) {
+                        result.add(EventDto.of(event, current));
+                        current = nextMonth(current);
+                    }
                     break;
             }
         }
