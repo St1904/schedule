@@ -1,8 +1,8 @@
 # INSERT INTO tutor (name, address) VALUE ("Мария Ивановна", "Санкт-Петербург, пл.Мужества, д...");
 
-# INSERT INTO contact_name (id_tutor, name) VALUES (1, "мобильный телефон"), (1, "вконтакте");
-
 # INSERT INTO student (id_tutor, first_name, last_name, address) VALUE (1, 'Аня', 'Смолина', 'наб. Черной речки, д. 3, кв. NN');
+
+# INSERT INTO contact_name (name) VALUES ("мобильный телефон"), ("вконтакте");
 
 # INSERT INTO contact (value, id_contact_name, id_student) VALUE ('89007654321', 1, 1);
 # INSERT INTO contact (value, id_contact_name, id_student) VALUE ('vk.ru/id12345', 2, 1);
