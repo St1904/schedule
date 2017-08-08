@@ -28,8 +28,8 @@ public class RestEventChangeController {
         this.eventService = eventService;
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/rest/tutor/{idTutor}/eventchange", params = {"from", "to"})
-    public ResponseEntity<List<EventDto>> listAllEvents(@PathVariable("idTutor") Long idTutor,
+    @RequestMapping(method = RequestMethod.GET, path = "/rest/eventchange", params = {"from", "to"})
+    public ResponseEntity<List<EventDto>> listAllEvents(@RequestHeader("idTutor") Long idTutor,
                                                      @RequestParam(value = "from") String from,
                                                      @RequestParam(value = "to") String to) {
         List<Event> events = eventService.findBetweenDates(idTutor, from, to);

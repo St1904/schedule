@@ -41,28 +41,28 @@ public class RestContactNameController {
     public ResponseEntity<ContactName> getContactName(@RequestHeader("idTutor") Long idTutor,
                                                       @PathVariable("id") Long id) {
         ContactName found = contactNameService.findById(id);
-        if (found == null || !found.getIdTutor().equals(idTutor)) {
+/*        if (found == null || !found.getIdStudent().equals(idTutor)) {
             return new ResponseEntity<>(NOT_FOUND);
-        }
+        }*/
         return new ResponseEntity<>(found, OK);
     }
 
     //not sure it's necessary
-    @RequestMapping(method = GET, params = "name")
+/*    @RequestMapping(method = GET, params = "name")
     public ResponseEntity<ContactName> getContactNameByName(@RequestHeader("idTutor") Long idTutor,
                                                             @RequestParam("name") String name) {
         ContactName found = contactNameService.findByName(name);
-        if (found == null || !found.getIdTutor().equals(idTutor)) {
+        if (found == null || !found.getIdStudent().equals(idTutor)) {
             return new ResponseEntity<>(NOT_FOUND);
         }
         return new ResponseEntity<>(found, OK);
-    }
+    }*/
 
     @RequestMapping(method = POST)
     public ResponseEntity<Void> createContactName(@RequestHeader("idTutor") Long idTutor,
                                                   @RequestBody ContactName contactName,
                                                   UriComponentsBuilder ucBuilder) {
-        contactName.setIdTutor(idTutor);
+//        contactName.setIdStudent(idTutor);
         ContactName saved = contactNameService.createContactName(contactName);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/rest/contactname/{id}").buildAndExpand(saved.getId()).toUri());
@@ -73,13 +73,13 @@ public class RestContactNameController {
     public ResponseEntity<ContactName> updateContactName(@RequestHeader("idTutor") Long idTutor,
                                                          @PathVariable("id") Long id,
                                                          @RequestBody ContactName contactName) {
-        ContactName found = contactNameService.findById(id);
-        if (found == null || !found.getIdTutor().equals(idTutor)) {
+//        ContactName found = contactNameService.findById(id);
+/*        if (found == null || !found.getIdStudent().equals(idTutor)) {
             return new ResponseEntity<>(NOT_FOUND);
         }
-        contactName.setIdTutor(idTutor);
+        contactName.setIdStudent(idTutor);*/
         contactName.setId(id);
-        found = contactNameService.updateContactName(contactName);
+        ContactName found = contactNameService.updateContactName(contactName);
         return new ResponseEntity<>(found, OK);
     }
 
@@ -87,9 +87,9 @@ public class RestContactNameController {
     public ResponseEntity<ContactName> deleteContactName(@PathVariable("idTutor") Long idTutor,
                                                          @PathVariable("id") Long id) {
         ContactName found = contactNameService.findById(id);
-        if (found == null || !found.getIdTutor().equals(idTutor)) {
+/*        if (found == null || !found.getIdStudent().equals(idTutor)) {
             return new ResponseEntity<>(NOT_FOUND);
-        }
+        }*/
         contactNameService.deleteContactName(id);
         return new ResponseEntity<>(NO_CONTENT);
     }

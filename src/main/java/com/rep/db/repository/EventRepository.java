@@ -13,7 +13,8 @@ import java.util.List;
 public interface EventRepository extends JpaRepository<Event, Long> {
     @Query(value = "select *" +
             "from Event e " +
-            "where e.id_tutor = :idTutor", nativeQuery = true)
+            "where e.id_tutor = :idTutor",
+            nativeQuery = true)
     List<Event> findAllByIdTutor(@Param("idTutor") Long idTutor);
 
     @Query(value = "select * " +
@@ -22,6 +23,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 //            "and e.code = :code " +
             "and e.date_start <= :to " +
             "and (e.date_end >= :from " +
-            "or e.date_end is null)", nativeQuery = true)
+            "or e.date_end is null)",
+            nativeQuery = true)
     List<Event> findAllDailyBetweenDates(@Param("idTutor") Long idTutor, /*@Param("code") String code,*/ @Param("from") String from, @Param("to") String to);
 }

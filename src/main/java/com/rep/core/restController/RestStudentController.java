@@ -1,6 +1,6 @@
 package com.rep.core.restController;
 
-import com.rep.core.services.StudentService;
+import com.rep.core.services.StudentContactService;
 import com.rep.db.domain.Student;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -20,16 +20,16 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @RestController
 @RequestMapping("/rest/student")
 public class RestStudentController {
-    private final StudentService studentService;
+    private final StudentContactService studentContactService;
 
-    public RestStudentController(StudentService studentService) {
-        this.studentService = studentService;
+    public RestStudentController(StudentContactService studentContactService) {
+        this.studentContactService = studentContactService;
     }
 
     @RequestMapping(method = GET, path = "/{id}")
     public ResponseEntity<Student> findById(@RequestHeader("idTutor") Long idTutor,
                                             @PathVariable("id") Long id) {
-        Student found = studentService.findById(id);
+        Student found = studentContactService.findStudentById(id);
         if (found == null || !found.getIdTutor().equals(idTutor)) {
             return new ResponseEntity<Student>(NOT_FOUND);
         }
@@ -38,7 +38,7 @@ public class RestStudentController {
 
     @RequestMapping(method = GET)
     public ResponseEntity<List<Student>> findByIdTutor(@RequestHeader("idTutor") Long idTutor) {
-        List<Student> students = studentService.findByIdTutor(idTutor);
+        List<Student> students = studentContactService.findStudentsByIdTutor(idTutor);
         if (students.isEmpty()) {
             return new ResponseEntity<>(NOT_FOUND);
         }
@@ -48,7 +48,7 @@ public class RestStudentController {
     @RequestMapping(method = GET, params = "firstName")
     public ResponseEntity<List<Student>> findByName(@RequestHeader("idTutor") Long idTutor,
                                                     @RequestParam("firstName") String firstName) {
-        List<Student> students = studentService.findByIdTutorAndFirstName(idTutor, firstName);
+        List<Student> students = studentContactService.findStudentsByIdTutorAndFirstName(idTutor, firstName);
         if (students.isEmpty()) {
             return new ResponseEntity<>(NOT_FOUND);
         }
@@ -60,34 +60,34 @@ public class RestStudentController {
                                                  @RequestBody Student student,
                                                  UriComponentsBuilder builder) {
         student.setIdTutor(idTutor);
-        Student saved = studentService.createStudent(student);
+        Student saved = studentContactService.createStudent(student);
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(builder.path("/rest/student/{id}").buildAndExpand(saved.getIdTutor(), saved.getId()).toUri());
-        return new ResponseEntity<Student>(headers, CREATED);
+        headers.setLocation(builder.path("/rest/student/{id}").buildAndExpand(saved.getId()).toUri());
+        return new ResponseEntity<>(headers, CREATED);
     }
 
     @RequestMapping(method = PUT, path = "/{id}")
     public ResponseEntity<Student> updateStudent(@RequestHeader("idTutor") Long idTutor,
                                                  @PathVariable("id") Long id,
                                                  @RequestBody Student student) {
-        Student found = studentService.findById(id);
+        Student found = studentContactService.findStudentById(id);
         if (found == null || !found.getIdTutor().equals(idTutor)) {
             return new ResponseEntity<>(NOT_FOUND);
         }
         student.setIdTutor(idTutor);
         student.setId(id);
-        found = studentService.updateStudent(student);
+        found = studentContactService.updateStudent(student);
         return new ResponseEntity<>(found, OK);
     }
 
     @RequestMapping(method = DELETE, path = "/{id}")
     public ResponseEntity<Student> deleteStudent(@RequestHeader("idTutor") Long idTutor,
                                                  @PathVariable("id") Long id) {
-        Student found = studentService.findById(id);
+        Student found = studentContactService.findStudentById(id);
         if (found == null || !found.getIdTutor().equals(idTutor)) {
             return new ResponseEntity<>(NOT_FOUND);
         }
-        studentService.deleteStudent(id);
+        studentContactService.deleteStudent(id);
         return new ResponseEntity<>(NO_CONTENT);
     }
 }

@@ -1,6 +1,5 @@
 package com.rep;
 
-import com.rep.core.services.ContactService;
 import com.rep.db.repository.ContactNameRepository;
 import com.rep.db.repository.ContactRepository;
 import com.rep.db.repository.TutorRepository;
@@ -107,7 +106,7 @@ public class Application {
 //        System.out.println(dataSource);
 
 
-        ContactService contactService = applicationContext.getBean(ContactService.class);
+//        ContactService contactService = applicationContext.getBean(ContactService.class);
 
 //        List<ContactName> list = contactService.findAll();
 //        for (ContactName contactName : list) {

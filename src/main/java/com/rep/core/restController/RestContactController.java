@@ -1,6 +1,6 @@
 package com.rep.core.restController;
 
-import com.rep.core.services.ContactService;
+import com.rep.core.services.StudentContactService;
 import com.rep.db.domain.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -21,40 +21,40 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
  */
 
 @RestController
-//@RequestMapping("/rest/contact")
+@RequestMapping("/rest/student/{idStudent}/contact")
 public class RestContactController {
-    private final ContactService contactService;
+    private final StudentContactService studentContactService;
 
     @Autowired
-    public RestContactController(ContactService contactService) {
-        this.contactService = contactService;
+    public RestContactController(StudentContactService contactService) {
+        this.studentContactService = contactService;
     }
 
-    @RequestMapping(method = GET, path = "/rest/student/{idStudent}/contact")
+    @RequestMapping(method = GET)
     public ResponseEntity<List<Contact>> findAllByIdStudent(@PathVariable("idStudent") Long idStudent) {
-        List<Contact> contacts = contactService.findByIdStudent(idStudent);
+        List<Contact> contacts = studentContactService.findContactsByIdStudent(idStudent);
         if (contacts.isEmpty()) {
             return new ResponseEntity<>(NOT_FOUND);
         }
         return new ResponseEntity<>(contacts, OK);
     }
 
-    @RequestMapping(method = GET, value = "/rest/student/{idStudent}/contact/{id}")
+    @RequestMapping(method = GET, path = "/{id}")
     public ResponseEntity<Contact> findById(@PathVariable("id") Long id,
                                             @PathVariable("idStudent") Long idStudent) {
-        Contact contact = contactService.findById(id);
+        Contact contact = studentContactService.findContactById(id);
         if (contact == null || !contact.getIdStudent().equals(idStudent)) {
             return new ResponseEntity<>(NOT_FOUND);
         }
         return new ResponseEntity<>(contact, OK);
     }
 
-    @RequestMapping(method = POST, path = "rest/student/{idStudent}/contact")
+    @RequestMapping(method = POST)
     public ResponseEntity<Void> createContact(@PathVariable("idStudent") Long idStudent,
                                               @RequestBody Contact contact,
                                               UriComponentsBuilder ucBuilder) {
         contact.setIdStudent(idStudent);
-        Contact saved = contactService.createContact(contact);
+        Contact saved = studentContactService.createOrUpdateContact(contact);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder
                 .path("/rest/student/{idStudent}/contact/{id}")
@@ -65,28 +65,28 @@ public class RestContactController {
         return new ResponseEntity<>(headers, CREATED);
     }
 
-    @RequestMapping(method = PUT, path = "rest/student/{idStudent}/contact/{id}")
+    @RequestMapping(method = PUT, path = "/{id}")
     public ResponseEntity<Contact> updateContact(@PathVariable("idStudent") Long idStudent,
                                                  @PathVariable("id") Long id,
                                                  @RequestBody Contact contact) {
-        Contact found = contactService.findById(id);
+        Contact found = studentContactService.findContactById(id);
         if (found == null || !found.getIdStudent().equals(idStudent)) {
             return new ResponseEntity<>(NOT_FOUND);
         }
         contact.setId(id);
         contact.setIdStudent(idStudent);
-        found = contactService.updateContact(contact);
+        found = studentContactService.createOrUpdateContact(contact);
         return new ResponseEntity<>(found, OK);
     }
 
-    @RequestMapping(method = DELETE, path = "rest/student/{idStudent}/contact/{id}")
+    @RequestMapping(method = DELETE, path = "/{id}")
     public ResponseEntity<Void> deleteContact(@PathVariable("idStudent") Long idStudent,
                                               @PathVariable("id") Long id) {
-        Contact found = contactService.findById(id);
+        Contact found = studentContactService.findContactById(id);
         if (found == null || !found.getIdStudent().equals(idStudent)) {
             return new ResponseEntity<>(NOT_FOUND);
         }
-        contactService.deleteContact(id);
+        studentContactService.deleteContact(id);
         return new ResponseEntity<>(NO_CONTENT);
     }
 }
