@@ -1,31 +1,26 @@
-package com.rep.db.domain.domain_old;
-
-import com.rep.db.domain.BaseEntity;
-import com.rep.db.domain.Subject;
+package com.rep.db.domain;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by sbt-sokolova-ts on 07.02.2017.
  */
 
-//@Entity
-//@Table(name = "theme")
+@Entity
+@Table(name = "theme")
 public class Theme extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "id_subject", foreignKey = @ForeignKey(name = "fk_theme_subject"))
     private Subject subject;
 
-    @Column(name = "name", nullable = false, length = 45)
+    @Column(name = "name", nullable = false, length = 255)
     private String name;
 
     @Column(name = "comment")
     private String comment;
 
     @Column(name = "id_parent_theme")
-    private long idParentTheme;
+    private Long idParentTheme;
 
     public Subject getSubject() {
         return subject;
@@ -51,11 +46,11 @@ public class Theme extends BaseEntity {
         this.comment = comment;
     }
 
-    public long getIdParentTheme() {
+    public Long getIdParentTheme() {
         return idParentTheme;
     }
 
-    public void setIdParentTheme(long idParentTheme) {
+    public void setIdParentTheme(Long idParentTheme) {
         this.idParentTheme = idParentTheme;
     }
 
@@ -69,7 +64,7 @@ public class Theme extends BaseEntity {
                 '}';
     }
 
-    //TODO delete this!
+   /* //TODO delete this!
     @OneToMany(mappedBy = "theme")
     private Set<Journal> journal = new HashSet<>();
 
@@ -79,7 +74,7 @@ public class Theme extends BaseEntity {
 
     public void setJournal(Set<Journal> journal) {
         this.journal = journal;
-    }
+    }*/
 
     public Theme() {
     }

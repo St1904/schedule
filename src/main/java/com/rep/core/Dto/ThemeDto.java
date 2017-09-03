@@ -1,6 +1,9 @@
 package com.rep.core.Dto;
 
-import com.rep.db.domain.domain_old.Theme;
+import com.rep.db.domain.Theme;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by sbt-sokolova-ts on 16.02.2017.
@@ -17,6 +20,14 @@ public class ThemeDto {
         result.setName(theme.getName());
         result.setComment(theme.getComment() == null ? "" : theme.getComment());
         result.setIdParent(theme.getIdParentTheme());
+        return result;
+    }
+
+    public static List<ThemeDto> of(List<Theme> themes) {
+        List<ThemeDto> result = new ArrayList<>();
+        for (Theme theme : themes) {
+            result.add(ThemeDto.of(theme));
+        }
         return result;
     }
 

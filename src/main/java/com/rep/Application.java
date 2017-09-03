@@ -29,6 +29,11 @@ public class Application {
     public static void main(String[] args) {
         ApplicationContext applicationContext = SpringApplication.run(Application.class, args);
 
+/*        SubjectThemeService subjectThemeService = applicationContext.getBean(SubjectThemeService.class);
+
+        List<Theme> themes = subjectThemeService.findThemesByIdSubject(2L);
+        System.out.println(themes);*/
+
 /*
         EventChangeService eventChangeService = applicationContext.getBean(EventChangeService.class);
         EventService eventService = applicationContext.getBean(EventService.class);
