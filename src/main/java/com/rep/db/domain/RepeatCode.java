@@ -6,7 +6,7 @@ package com.rep.db.domain;
 public enum RepeatCode {
     DAILY,
     WEEKLY,
-    YEARLY,
     MONTHLY,
+    YEARLY,
     NEVER
 }

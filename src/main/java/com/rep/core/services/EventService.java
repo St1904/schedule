@@ -29,12 +29,9 @@ public class EventService {
 
     public List<Event> findBetweenDates(Long idTutor, String from, String to) {
         List<Event> result = new ArrayList<>();
-        result.addAll(eventRepository.findAllDailyBetweenDates(idTutor,
-//                RepeatCode.DAILY.name(),
+        result.addAll(eventRepository.findAllEventsBetweenDates(idTutor,
                 from,
                 to));
-
-
         return result;
     }
 

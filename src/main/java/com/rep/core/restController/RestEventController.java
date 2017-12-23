@@ -17,6 +17,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
  * Created by sbt-sokolova-ts on 14.02.2017.
  */
 
+@CrossOrigin
 @RestController
 @RequestMapping("/rest/event")
 public class RestEventController {

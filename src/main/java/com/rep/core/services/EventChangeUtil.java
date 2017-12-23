@@ -37,7 +37,7 @@ public class EventChangeUtil {
                 case WEEKLY:
                     current = event.getDateStart();
                     while ((current.before(to) || current.getTime() == to.getTime())
-                            && (current.before(from) || current.getTime() == from.getTime())) {
+                            && !(current.after(from) || current.getTime() == from.getTime())) {
                         current = nextWeek(current);
                     }
                     while ((current.before(to) || current.getTime() == to.getTime())

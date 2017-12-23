@@ -17,6 +17,7 @@ import static com.rep.core.special.DateUtil.toDate;
  * Created by St on 10.06.2017.
  */
 
+@CrossOrigin
 @RestController
 public class RestEventChangeController {
     private final EventChangeUtil eventChangeUtil;

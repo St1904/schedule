@@ -62,7 +62,7 @@
 # INSERT INTO event(id_tutor, name, code, date_start, date_end, time_start, time_end, comment) VALUE (1, "Занятие с Аней", "WEEKLY", "2017-06-01", null, "16:00:00", "17:30:00", "Аня М. математика");
 # INSERT INTO event(id_tutor, name, code, date_start, date_end, time_start, time_end, comment) VALUE (1, "Занятие с Аней", "WEEKLY", "2017-06-04", null, "16:00:00", "17:30:00", "Аня М. математика");
 # INSERT INTO event(id_tutor, name, code, date_start, date_end, time_start, time_end, comment) VALUE (1, "Занятие с Лизой", "WEEKLY", "2017-06-02", null, "17:00:00", "18:30:00", "Лиза А. математика");
-# INSERT INTO event(id_tutor, name, code, date_start, date_end, time_start, time_end, comment) VALUE (1, "Занятие с Лизой", "WEEKLY", "2017-06-05", null, "17:00:00", "18:30:00", "Лиза А. математика");
+# INSERT INTO event(id_tutor, name, code, date_start, date_end, time_start, time_end, comment) VALUE (1, "Занятие с Лизой", "WEEKLY", "2017-06-05", null, "17:15:00", "18:45:00", "Лиза А. математика");
 
 
 

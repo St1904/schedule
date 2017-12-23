@@ -9,6 +9,7 @@ import java.util.Date;
  * Created by sbt-sokolova-ts on 15.02.2017.
  */
 public class EventDto {
+    private Long id;
     private Long idTutor;
     private String name;
     private String currentDate;
@@ -18,6 +19,7 @@ public class EventDto {
 
     public static EventDto of(Event event, Date currentDate) {
         EventDto result = new EventDto();
+        result.setId(event.getId());
         result.setIdTutor(event.getIdTutor());
         result.setName(event.getName());
         result.setCurrentDate(DateUtil.toString(currentDate));
@@ -36,6 +38,14 @@ public class EventDto {
     }*/
 
     public EventDto() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getIdTutor() {
