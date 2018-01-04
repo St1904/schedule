@@ -54,7 +54,6 @@ public class StudentContactService {
     @Transactional
     public Student createOrUpdateStudent(Student student) {
         Student saved = studentRepository.saveAndFlush(student);
-        System.out.println(student.getContacts());
         for (Contact contact : student.getContacts()) {
             contact.setIdStudent(saved.getId());
             ContactName savedContactName = contactNameRepository.findByName(contact.getContactName().getName());
