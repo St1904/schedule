@@ -52,12 +52,33 @@ public class StudentContactService {
     }
 
     @Transactional
-    public Student createStudent(Student student) {
+    public Student createOrUpdateStudent(Student student) {
         Student saved = studentRepository.saveAndFlush(student);
+        System.out.println(student.getContacts());
         for (Contact contact : student.getContacts()) {
             contact.setIdStudent(saved.getId());
-            createOrUpdateContact(contact);
+            ContactName savedContactName = contactNameRepository.findByName(contact.getContactName().getName());
+            if (savedContactName == null) {
+                savedContactName = contactNameRepository.saveAndFlush(contact.getContactName());
+            }
+            contact.setContactName(savedContactName);
+            contactRepository.saveAndFlush(contact);
         }
+
+        //Удаляем старые ненужные контакты по id
+        List<Contact> oldContacts = contactRepository.findByIdStudent(student.getId());
+        for (Contact oldContact : oldContacts) {
+            boolean contains = false;
+            for (Contact newContact : student.getContacts()) {
+                if (oldContact.getId().equals(newContact.getId())) {
+                    contains = true;
+                }
+            }
+            if (!contains) {
+                contactRepository.deleteById(oldContact.getId());
+            }
+        }
+
         return saved;
     }
 
@@ -65,9 +86,9 @@ public class StudentContactService {
         return studentRepository.findOne(id);
     }
 
-    public Student updateStudent(Student student) {
+    /*public Student updateStudent(Student student) {
         return studentRepository.saveAndFlush(student);
-    }
+    }*/
 
     public void deleteStudent(Long id) {
         studentRepository.delete(id);

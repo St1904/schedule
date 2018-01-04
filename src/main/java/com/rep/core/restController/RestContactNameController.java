@@ -28,9 +28,10 @@ public class RestContactNameController {
         this.contactNameService = contactNameService;
     }
 
+    //TODO возможно убрать idTutor
     @RequestMapping(method = GET)
     public ResponseEntity<List<ContactName>> findAllContactNames(@RequestHeader("idTutor") Long idTutor) {
-        List<ContactName> contactNames = contactNameService.findByIdTutor(idTutor);
+        List<ContactName> contactNames = contactNameService.listAllContactNames();
         if (contactNames.isEmpty()) {
             return new ResponseEntity<>(NOT_FOUND);
         }

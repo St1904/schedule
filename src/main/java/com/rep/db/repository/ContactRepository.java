@@ -10,4 +10,6 @@ import java.util.List;
  */
 public interface ContactRepository extends JpaRepository<Contact, Long> {
     List<Contact> findByIdStudent(Long idStudent);
+
+    void deleteById(Long id);
 }

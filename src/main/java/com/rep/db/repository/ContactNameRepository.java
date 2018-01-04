@@ -13,6 +13,7 @@ import java.util.List;
 public interface ContactNameRepository extends JpaRepository<ContactName, Long> {
     ContactName findByName(@Param("name") String name);
 
+    //TODO убрать, т.к. не требуется
     @Query(value = "select distinct cn.id, cn.name " +
             "from contact_name cn " +
             "join contact c on cn.id = c.id_contact_name " +

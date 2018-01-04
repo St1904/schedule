@@ -60,7 +60,7 @@ public class RestStudentController {
                                                  @RequestBody Student student,
                                                  UriComponentsBuilder builder) {
         student.setIdTutor(idTutor);
-        Student saved = studentContactService.createStudent(student);
+        Student saved = studentContactService.createOrUpdateStudent(student);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(builder.path("/rest/student/{id}").buildAndExpand(saved.getId()).toUri());
         return new ResponseEntity<>(headers, CREATED);
@@ -76,7 +76,7 @@ public class RestStudentController {
         }
         student.setIdTutor(idTutor);
         student.setId(id);
-        found = studentContactService.updateStudent(student);
+        found = studentContactService.createOrUpdateStudent(student);
         return new ResponseEntity<>(found, OK);
     }
 
