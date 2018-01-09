@@ -79,7 +79,7 @@ public class DateUtil {
     }
 
     public static String toString(Date date) {
-        return dateFormat.format(date);
+        return (date == null ? null : dateFormat.format(date));
     }
 
     public DateUtil() {

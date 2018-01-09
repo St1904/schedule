@@ -15,7 +15,11 @@ public class EventDto {
     private String currentDate;
     private Date timeStart;
     private Date timeEnd;
+    private String repeatCode;
+    private String dateStart;
+    private String dateEnd;
     private String comment;
+    private LessonDto lesson;
 
     public static EventDto of(Event event, Date currentDate) {
         EventDto result = new EventDto();
@@ -25,7 +29,13 @@ public class EventDto {
         result.setCurrentDate(DateUtil.toString(currentDate));
         result.setTimeStart(event.getTimeStart());
         result.setTimeEnd(event.getTimeEnd());
+        result.setRepeatCode(event.getRepeatCode().toString());
+        result.setDateStart(DateUtil.toString(event.getDateStart()));
+        result.setDateEnd(DateUtil.toString(event.getDateEnd()));
         result.setComment(event.getComment());
+        if (event.getLesson() != null) {
+            result.setLesson(LessonDto.of(event.getLesson()));
+        }
         return result;
     }
 /*
@@ -88,12 +98,44 @@ public class EventDto {
         this.timeEnd = timeEnd;
     }
 
+    public String getRepeatCode() {
+        return repeatCode;
+    }
+
+    public void setRepeatCode(String repeatCode) {
+        this.repeatCode = repeatCode;
+    }
+
+    public String getDateStart() {
+        return dateStart;
+    }
+
+    public void setDateStart(String dateStart) {
+        this.dateStart = dateStart;
+    }
+
+    public String getDateEnd() {
+        return dateEnd;
+    }
+
+    public void setDateEnd(String dateEnd) {
+        this.dateEnd = dateEnd;
+    }
+
     public String getComment() {
         return comment;
     }
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public LessonDto getLesson() {
+        return lesson;
+    }
+
+    public void setLesson(LessonDto lesson) {
+        this.lesson = lesson;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.rep.core.restController;
 
+import com.rep.core.Dto.EventDto;
 import com.rep.core.services.EventService;
 import com.rep.db.domain.Event;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,13 +52,13 @@ public class RestEventController {
     }
 
     @RequestMapping(method = GET, path = "/{id}")
-    public ResponseEntity<Event> eventById(@RequestHeader("idTutor") Long idTutor,
+    public ResponseEntity<EventDto> eventById(@RequestHeader("idTutor") Long idTutor,
                                            @PathVariable("id") Long id) {
         Event found = eventService.findById(id);
         if (found == null || !found.getIdTutor().equals(idTutor)) {
             return new ResponseEntity<>(NOT_FOUND);
         }
-        return new ResponseEntity<>(found, OK);
+        return new ResponseEntity<>(EventDto.of(found, null), OK);
     }
 
     @RequestMapping(method = POST)

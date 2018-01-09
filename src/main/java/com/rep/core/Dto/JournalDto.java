@@ -1,6 +1,7 @@
 package com.rep.core.Dto;
 
-import com.rep.db.domain.domain_old.Journal;
+import com.rep.db.domain.Journal;
+import com.rep.db.domain.Student;
 
 import java.util.Date;
 
@@ -9,20 +10,29 @@ import java.util.Date;
  */
 public class JournalDto {
     private Long id;
-    private Long idTheme;
-    private String themeName;
-    private String subjectName;
-    private Long idLesson;
     private Date date;
+    private String studentFirstName;
+    private String studentLastName;
+    private String themeName;
+    private String homeTask;
+    private String lessonMark;
+    private String hometaskMark;
+    private String comment;
 
     public static JournalDto of(Journal journal) {
         JournalDto result = new JournalDto();
         result.setId(journal.getId());
         result.setDate(journal.getDate());
-        result.setIdLesson(journal.getLesson().getId());
-        result.setIdTheme(journal.getTheme().getId());
+        Student student = journal.getLesson().getStudent();
+        if (student != null) {
+            result.setStudentFirstName(student.getFirstName());
+            result.setStudentLastName(student.getLastName());
+        }
         result.setThemeName(journal.getTheme().getName());
-        result.setSubjectName(journal.getLesson().getSubject().getName());
+        result.setHomeTask(journal.getHometask());
+        result.setLessonMark(journal.getLessonMark());
+        result.setHometaskMark(journal.getHometaskMark());
+        result.setComment(journal.getComment());
         return result;
     }
 
@@ -37,12 +47,28 @@ public class JournalDto {
         this.id = id;
     }
 
-    public Long getIdTheme() {
-        return idTheme;
+    public Date getDate() {
+        return date;
     }
 
-    public void setIdTheme(Long idTheme) {
-        this.idTheme = idTheme;
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getStudentFirstName() {
+        return studentFirstName;
+    }
+
+    public void setStudentFirstName(String studentFirstName) {
+        this.studentFirstName = studentFirstName;
+    }
+
+    public String getStudentLastName() {
+        return studentLastName;
+    }
+
+    public void setStudentLastName(String studentLastName) {
+        this.studentLastName = studentLastName;
     }
 
     public String getThemeName() {
@@ -53,27 +79,35 @@ public class JournalDto {
         this.themeName = themeName;
     }
 
-    public String getSubjectName() {
-        return subjectName;
+    public String getHomeTask() {
+        return homeTask;
     }
 
-    public void setSubjectName(String subjectName) {
-        this.subjectName = subjectName;
+    public void setHomeTask(String homeTask) {
+        this.homeTask = homeTask;
     }
 
-    public Long getIdLesson() {
-        return idLesson;
+    public String getLessonMark() {
+        return lessonMark;
     }
 
-    public void setIdLesson(Long idLesson) {
-        this.idLesson = idLesson;
+    public void setLessonMark(String lessonMark) {
+        this.lessonMark = lessonMark;
     }
 
-    public Date getDate() {
-        return date;
+    public String getHometaskMark() {
+        return hometaskMark;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setHometaskMark(String hometaskMark) {
+        this.hometaskMark = hometaskMark;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

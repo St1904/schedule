@@ -1,11 +1,14 @@
 #  INSERT INTO tutor (name, address) VALUE ("Мария Ивановна", "Санкт-Петербург, пл.Мужества, д...");
 
 #  INSERT INTO student (id_tutor, first_name, last_name, address) VALUE (1, 'Аня', 'Смолина', 'наб. Черной речки, д. 3, кв. NN');
+#  INSERT INTO student (id_tutor, first_name, last_name, address) VALUE (1, 'Лиза', 'Вахрамеева', 'ул. Красного курсанта, д. 18');
 
-#  INSERT INTO contact_name (name) VALUES ("мобильный телефон"), ("вконтакте");
+#  INSERT INTO contact_name (name) VALUES ("мобильный телефон"), ("вконтакте"), ("вотсап");
 
 #  INSERT INTO contact (value, id_contact_name, id_student) VALUE ('89007654321', 1, 1);
 #  INSERT INTO contact (value, id_contact_name, id_student) VALUE ('vk.ru/id12345', 2, 1);
+#  INSERT INTO contact (value, id_contact_name, id_student) VALUE ('+79530003377', 1, 2);
+#  INSERT INTO contact (value, id_contact_name, id_student) VALUE ('см. телефон', 3, 2);
 
 #  INSERT INTO subject (id_tutor, name) VALUE (1, 'Математика');
 #  INSERT INTO subject (id_tutor, name) VALUE (1, 'Биология');
@@ -64,3 +67,7 @@
 #  INSERT INTO event(id_tutor, name, code, date_start, date_end, time_start, time_end, comment) VALUE (1, "Занятие с Лизой", "WEEKLY", "2017-06-02", null, "17:00:00", "18:30:00", "Лиза А. математика");
 #  INSERT INTO event(id_tutor, name, code, date_start, date_end, time_start, time_end, comment) VALUE (1, "Занятие с Лизой", "WEEKLY", "2017-06-05", null, "17:15:00", "18:45:00", "Лиза А. математика");
 
+#  INSERT INTO lesson(id_event, price, id_subject, id_student) VALUE (5, 600, 1, 1);
+#  INSERT INTO lesson(id_event, price, id_subject, id_student) VALUE (6, 600, 1, 1);
+#  INSERT INTO lesson(id_event, price, id_subject, id_student) VALUE (7, 800, 1, 2);
+#  INSERT INTO lesson(id_event, price, id_subject, id_student) VALUE (8, 800, 1, 2);

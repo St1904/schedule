@@ -58,6 +58,9 @@ public class Event extends BaseEntity {
     @Column(name = "comment")
     private String comment;
 
+    @OneToOne(mappedBy = "event")
+    private Lesson lesson;
+
     public Long getIdTutor() {
         return idTutor;
     }
@@ -120,5 +123,16 @@ public class Event extends BaseEntity {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public Lesson getLesson() {
+        return lesson;
+    }
+
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
+    }
+
+    public Event() {
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
  * Created by sbt-sokolova-ts on 08.02.2017.
  */
 public interface EventRepository extends JpaRepository<Event, Long> {
-    @Query(value = "select *" +
+    @Query(value = "select * " +
             "from Event e " +
             "where e.id_tutor = :idTutor",
             nativeQuery = true)
