@@ -3,7 +3,9 @@ package com.rep.core.Dto;
 import com.rep.db.domain.Journal;
 import com.rep.db.domain.Student;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by sbt-sokolova-ts on 16.02.2017.
@@ -13,6 +15,8 @@ public class JournalDto {
     private Date date;
     private String studentFirstName;
     private String studentLastName;
+    private Long idSubject;
+    private Long idTheme;
     private String themeName;
     private String homeTask;
     private String lessonMark;
@@ -23,16 +27,32 @@ public class JournalDto {
         JournalDto result = new JournalDto();
         result.setId(journal.getId());
         result.setDate(journal.getDate());
-        Student student = journal.getLesson().getStudent();
-        if (student != null) {
-            result.setStudentFirstName(student.getFirstName());
-            result.setStudentLastName(student.getLastName());
+        if (journal.getLesson() != null) {
+            if (journal.getLesson().getSubject() != null) {
+                result.setIdSubject(journal.getLesson().getSubject().getId());
+            }
+            Student student = journal.getLesson().getStudent();
+            if (student != null) {
+                result.setStudentFirstName(student.getFirstName());
+                result.setStudentLastName(student.getLastName());
+            }
         }
-        result.setThemeName(journal.getTheme().getName());
+        if (journal.getTheme() != null) {
+            result.setIdTheme(journal.getTheme().getId());
+            result.setThemeName(journal.getTheme().getName());
+        }
         result.setHomeTask(journal.getHometask());
         result.setLessonMark(journal.getLessonMark());
         result.setHometaskMark(journal.getHometaskMark());
         result.setComment(journal.getComment());
+        return result;
+    }
+
+    public static List<JournalDto> of(List<Journal> journals) {
+        List<JournalDto> result = new ArrayList<>();
+        for (Journal journal : journals) {
+            result.add(JournalDto.of(journal));
+        }
         return result;
     }
 
@@ -69,6 +89,22 @@ public class JournalDto {
 
     public void setStudentLastName(String studentLastName) {
         this.studentLastName = studentLastName;
+    }
+
+    public Long getIdSubject() {
+        return idSubject;
+    }
+
+    public void setIdSubject(Long idSubject) {
+        this.idSubject = idSubject;
+    }
+
+    public Long getIdTheme() {
+        return idTheme;
+    }
+
+    public void setIdTheme(Long idTheme) {
+        this.idTheme = idTheme;
     }
 
     public String getThemeName() {

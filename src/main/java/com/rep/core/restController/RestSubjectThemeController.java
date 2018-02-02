@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -29,11 +29,21 @@ public class RestSubjectThemeController {
 
     @RequestMapping(method = GET, path = "/parent", params = {"idParent"})
     public ResponseEntity<List<ThemeDto>> getThemesByIdParent(@RequestHeader("idTutor") Long idTutor,
-                                                           @RequestParam("idParent") Long idParent) {
+                                                              @RequestParam("idParent") Long idParent) {
 //        List<Subject> subjects = subjectThemeService.findSubjectsByIdTutor(idTutor);
         List<ThemeDto> themes = ThemeDto.of(subjectThemeService.findThemesByIdParent(idParent));
         if (themes.isEmpty()) {
-            return new ResponseEntity<>(NOT_FOUND);
+            return new ResponseEntity<>(NO_CONTENT);
+        }
+        return new ResponseEntity<>(themes, OK);
+    }
+
+    @RequestMapping(method = GET, path = "/subject/{idSubject}")
+    public ResponseEntity<List<ThemeDto>> getThemesByIdSubject(@RequestHeader("idTutor") Long idTutor,
+                                                               @PathVariable("idSubject") Long idSubject) {
+        List<ThemeDto> themes = ThemeDto.of(subjectThemeService.findThemesByIdSubject(idSubject));
+        if (themes.isEmpty()) {
+            return new ResponseEntity<>(NO_CONTENT);
         }
         return new ResponseEntity<>(themes, OK);
     }
