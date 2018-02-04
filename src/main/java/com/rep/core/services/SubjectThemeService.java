@@ -69,4 +69,12 @@ public class SubjectThemeService {
         }
         return result;
     }
+
+    public void deleteThemeById(Long id) {
+        List<Theme> children = themeRepository.findByIdParentTheme(id);
+        for (Theme theme : children) {
+            deleteThemeById(theme.getId());
+        }
+        themeRepository.delete(id);
+    }
 }

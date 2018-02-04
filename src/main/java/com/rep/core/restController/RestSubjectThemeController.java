@@ -3,6 +3,7 @@ package com.rep.core.restController;
 import com.rep.core.Dto.ThemeDto;
 import com.rep.core.services.SubjectThemeService;
 import com.rep.db.domain.Subject;
+import com.rep.db.domain.Theme;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.*;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 /**
  * Created by St on 14.08.2017.
@@ -72,5 +72,16 @@ public class RestSubjectThemeController {
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/rest/theme/subject/{id}").buildAndExpand(saved.getIdTutor(), saved.getId()).toUri());
         return new ResponseEntity<>(headers, CREATED);
+    }
+
+    @RequestMapping(method = DELETE, path = "/{id}")
+    public ResponseEntity<Theme> deleteContactName(@RequestHeader("idTutor") Long idTutor,
+                                                   @PathVariable("id") Long id) {
+        Theme found = subjectThemeService.findThemeById(id);
+/*        if (found == null || !found.getIdStudent().equals(idTutor)) {
+            return new ResponseEntity<>(NOT_FOUND);
+        }*/
+        subjectThemeService.deleteThemeById(id);
+        return new ResponseEntity<>(NO_CONTENT);
     }
 }

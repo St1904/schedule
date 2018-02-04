@@ -85,7 +85,7 @@ public class RestContactNameController {
     }
 
     @RequestMapping(method = DELETE, path = "/{id}")
-    public ResponseEntity<ContactName> deleteContactName(@PathVariable("idTutor") Long idTutor,
+    public ResponseEntity<ContactName> deleteContactName(@RequestHeader("idTutor") Long idTutor,
                                                          @PathVariable("id") Long id) {
         ContactName found = contactNameService.findById(id);
 /*        if (found == null || !found.getIdStudent().equals(idTutor)) {
