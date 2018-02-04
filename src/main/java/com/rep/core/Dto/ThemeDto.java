@@ -13,6 +13,7 @@ public class ThemeDto {
     private String name;
     private String comment;
     private Long idParent;
+    private List<ThemeDto> children;
 
     public static ThemeDto of(Theme theme) {
         ThemeDto result = new ThemeDto();
@@ -64,5 +65,13 @@ public class ThemeDto {
 
     public void setIdParent(Long idParent) {
         this.idParent = idParent;
+    }
+
+    public List<ThemeDto> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<ThemeDto> children) {
+        this.children = children;
     }
 }

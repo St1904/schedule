@@ -1,5 +1,6 @@
 package com.rep.core.services;
 
+import com.rep.core.Dto.ThemeDto;
 import com.rep.db.domain.Subject;
 import com.rep.db.domain.Theme;
 import com.rep.db.repository.SubjectRepository;
@@ -33,7 +34,12 @@ public class SubjectThemeService {
     }
 
     public Subject createSubject(Subject subject) {
-        return subjectRepository.saveAndFlush(subject);
+        Subject saved = subjectRepository.saveAndFlush(subject);
+        Theme theme = new Theme();
+        theme.setSubject(saved);
+        theme.setName(saved.getName());
+        themeRepository.saveAndFlush(theme);
+        return saved;
     }
 
     public Subject updateSubject(Subject subject) {
@@ -50,5 +56,17 @@ public class SubjectThemeService {
 
     public List<Theme> findThemesByIdParent(Long idParent) {
         return themeRepository.findByIdParentTheme(idParent);
+    }
+
+    public List<ThemeDto> findTreeByIdParent(Long idParent) {
+        List<ThemeDto> result = ThemeDto.of(themeRepository.findByIdParentTheme(idParent));
+        if (result.size() == 0) {
+            return null;
+        } else {
+            for (ThemeDto theme : result) {
+                theme.setChildren(findTreeByIdParent(theme.getId()));
+            }
+        }
+        return result;
     }
 }

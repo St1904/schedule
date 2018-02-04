@@ -2,15 +2,18 @@ package com.rep.core.restController;
 
 import com.rep.core.Dto.ThemeDto;
 import com.rep.core.services.SubjectThemeService;
+import com.rep.db.domain.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
-import static org.springframework.http.HttpStatus.NO_CONTENT;
-import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.*;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
  * Created by St on 14.08.2017.
@@ -38,6 +41,17 @@ public class RestSubjectThemeController {
         return new ResponseEntity<>(themes, OK);
     }
 
+    @RequestMapping(method = GET, path = "/tree/parent", params = {"idParent"})
+    public ResponseEntity<List<ThemeDto>> getTreeByIdParent(@RequestHeader("idTutor") Long idTutor,
+                                                            @RequestParam("idParent") Long idParent) {
+        List<ThemeDto> themes = subjectThemeService.findTreeByIdParent(idParent);
+        if (themes.isEmpty()) {
+            return new ResponseEntity<>(NO_CONTENT);
+        }
+        return new ResponseEntity<>(themes, OK);
+    }
+
+    //TODO Используется?
     @RequestMapping(method = GET, path = "/subject/{idSubject}")
     public ResponseEntity<List<ThemeDto>> getThemesByIdSubject(@RequestHeader("idTutor") Long idTutor,
                                                                @PathVariable("idSubject") Long idSubject) {
@@ -46,5 +60,17 @@ public class RestSubjectThemeController {
             return new ResponseEntity<>(NO_CONTENT);
         }
         return new ResponseEntity<>(themes, OK);
+    }
+
+    @RequestMapping(method = POST, path = "/subject")
+    public ResponseEntity<Subject> saveNewSubject(@RequestHeader("idTutor") Long idTutor,
+                                                  @RequestBody Subject subject,
+                                                  UriComponentsBuilder ucBuilder) {
+        subject.setIdTutor(idTutor);
+        System.out.println(subject.getName());
+        Subject saved = subjectThemeService.createSubject(subject);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(ucBuilder.path("/rest/theme/subject/{id}").buildAndExpand(saved.getIdTutor(), saved.getId()).toUri());
+        return new ResponseEntity<>(headers, CREATED);
     }
 }
