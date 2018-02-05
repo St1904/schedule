@@ -67,11 +67,20 @@ public class RestSubjectThemeController {
                                                   @RequestBody Subject subject,
                                                   UriComponentsBuilder ucBuilder) {
         subject.setIdTutor(idTutor);
-        System.out.println(subject.getName());
         Subject saved = subjectThemeService.createSubject(subject);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/rest/theme/subject/{id}").buildAndExpand(saved.getIdTutor(), saved.getId()).toUri());
         return new ResponseEntity<>(headers, CREATED);
+    }
+
+    @RequestMapping(method = POST)
+    public ResponseEntity<Theme> saveNewTheme(@RequestHeader("idTutor") Long idTutor,
+                                              @RequestBody Theme theme,
+                                              UriComponentsBuilder ucBuilder) {
+        Theme saved = subjectThemeService.createTheme(theme);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(ucBuilder.path("/rest/theme/{id}").buildAndExpand(saved.getId()).toUri());
+        return new ResponseEntity<>(theme, headers, CREATED);
     }
 
     @RequestMapping(method = DELETE, path = "/{id}")

@@ -42,6 +42,10 @@ public class SubjectThemeService {
         return saved;
     }
 
+    public Theme createTheme(Theme theme) {
+        return themeRepository.saveAndFlush(theme);
+    }
+
     public Subject updateSubject(Subject subject) {
         return subjectRepository.saveAndFlush(subject);
     }
