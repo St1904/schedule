@@ -1,6 +1,6 @@
 package com.rep.core.services;
 
-import com.rep.core.Dto.ThemeDto;
+import com.rep.core.dto.ThemeDto;
 import com.rep.db.domain.Subject;
 import com.rep.db.domain.Theme;
 import com.rep.db.repository.SubjectRepository;

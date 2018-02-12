@@ -1,6 +1,6 @@
 package com.rep.core.services;
 
-import com.rep.core.Dto.TutorDto;
+import com.rep.core.dto.TutorDto;
 import com.rep.db.domain.Tutor;
 import com.rep.db.repository.TutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;

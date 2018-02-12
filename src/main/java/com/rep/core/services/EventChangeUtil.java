@@ -1,6 +1,6 @@
 package com.rep.core.services;
 
-import com.rep.core.Dto.EventDto;
+import com.rep.core.dto.EventDto;
 import com.rep.db.domain.Event;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +9,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-import static com.rep.core.special.DateUtil.*;
+import static com.rep.core.common.DateUtil.*;
 
 /**
  * Created by St on 10.06.2017.

@@ -23,7 +23,7 @@ public class Lesson extends BaseEntity {
     @JoinColumn(name = "id_subject", foreignKey = @ForeignKey(name = "fk_lesson_subject"))
     private Subject subject;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "id_student", foreignKey = @ForeignKey(name = "fk_lesson_student"))
     private Student student;
 
