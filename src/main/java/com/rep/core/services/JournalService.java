@@ -21,6 +21,7 @@ public class JournalService {
         this.journalRepository = journalRepository;
     }
 
+    //TODO убрать?
     public boolean exists(Long idTutor, Long idLesson, Date date) {
         return journalRepository.existsUnique(idTutor, idLesson, date);
     }

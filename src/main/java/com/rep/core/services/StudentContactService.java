@@ -74,7 +74,7 @@ public class StudentContactService {
                 }
             }
             if (!contains) {
-                contactRepository.deleteById(oldContact.getId());
+                contactRepository.delete(oldContact.getId());
             }
         }
 

@@ -4,6 +4,7 @@ import com.rep.db.domain.Journal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 /**
  * Created by sbt-sokolova-ts on 08.02.2017.
  */
+@Repository
 public interface JournalRepository extends JpaRepository<Journal, Long> {
     @Query(value = "select * " +
             "from journal j, lesson l, event e " +
@@ -25,6 +27,7 @@ public interface JournalRepository extends JpaRepository<Journal, Long> {
                               @Param("limit") int limit,
                               @Param("offset") int offset);
 
+    //TODO убрать?
     @Query(value = "select exists " +
             "(select * " +
             "from journal j, lesson l, event e " +

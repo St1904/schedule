@@ -15,63 +15,91 @@ import static com.rep.core.common.DateUtil.*;
  * Created by St on 10.06.2017.
  */
 
-//TODO добавить changes потом
 @Component
 public class EventChangeUtil {
     public List<EventDto> formatAllEvents(List<Event> events, Date from, Date to) {
+
+        //Начальная дата события, попадающая в промежуток from-to
         Date current;
+
+        //Старт серии событий
+        Date dateStart;
+
+        //Окончание серии событий
+        Date dateEnd;
         ArrayList<EventDto> result = new ArrayList<>();
+
         for (Event event : events) {
+
+            dateStart = event.getDateStart();
+            dateEnd = event.getDateEnd();
+
             switch (event.getRepeatCode()) {
                 case DAILY:
-                    current = new Date(from.after(event.getDateStart()) ? from.getTime() : event.getDateStart().getTime());
-                    while ((current.before(to) || current.getTime() == to.getTime())
-                            && (event.getDateEnd() == null || current.before(event.getDateEnd()) || current.getTime() == event.getDateEnd().getTime())) {
+                    //Начальной датой становится начало промежутка, если оно позже, чем начало серии событий
+                    current = new Date(afterOrEqual(from, dateStart) ? from.getTime() : dateStart.getTime());
+
+                    //Пока текущая дата <= конца промежутка и <= даты окончания серии событий (либо событие "бесконечное")
+                    while (beforeOrEqual(current, to)
+                            && (dateEnd == null || beforeOrEqual(current, dateEnd))) {
+
+                        //формируем события каждый день
                         result.add(EventDto.of(event, current));
                         current = nextDay(current);
                     }
                     break;
+
                 case NEVER:
-                    result.add(EventDto.of(event, event.getDateStart()));
+                    //Для неповторяющихся событий достаточно проверить, что его дата попадает в нужный промежуток
+                    if (afterOrEqual(dateStart, from) && beforeOrEqual(dateStart, to)) {
+                        result.add(EventDto.of(event, dateStart));
+                    }
                     break;
+
                 case WEEKLY:
-                    current = event.getDateStart();
-                    while ((current.before(to) || current.getTime() == to.getTime())
-                            && !(current.after(from) || current.getTime() == from.getTime())) {
+                    current = dateStart;
+
+                    while (beforeOrEqual(current, to)
+                            && current.before(from)) {
                         current = nextWeek(current);
                     }
-                    while ((current.before(to) || current.getTime() == to.getTime())
-                            && (event.getDateEnd() == null || current.before(event.getDateEnd()) || current.getTime() == event.getDateEnd().getTime())) {
+                    while (beforeOrEqual(current, to)
+                            && (dateEnd == null || beforeOrEqual(current, dateEnd))) {
                         result.add(EventDto.of(event, current));
                         current = nextWeek(current);
                     }
                     break;
+
                 case YEARLY:
-                    current = event.getDateStart();
-                    while ((current.before(to) || current.getTime() == to.getTime())
-                            && (current.before(from) || current.getTime() == from.getTime())) {
+                    current = dateStart;
+
+                    while (beforeOrEqual(current, to)
+                            && current.before(from)) {
                         current = nextYear(current);
                     }
-                    while ((current.before(to) || current.getTime() == to.getTime())
-                            && (event.getDateEnd() == null || current.before(event.getDateEnd()) || current.getTime() == event.getDateEnd().getTime())) {
+                    while (beforeOrEqual(current, to)
+                            && (dateEnd == null || beforeOrEqual(current, dateEnd))) {
                         result.add(EventDto.of(event, current));
                         current = nextYear(current);
                     }
                     break;
+
                 case MONTHLY:
-                    current = event.getDateStart();
-                    while ((current.before(to) || current.getTime() == to.getTime())
-                            && (current.before(from) || current.getTime() == from.getTime())) {
+                    current = dateStart;
+
+                    while (beforeOrEqual(current, to)
+                            && current.before(from)) {
                         current = nextMonth(current);
                     }
-                    while ((current.before(to) || current.getTime() == to.getTime())
-                            && (event.getDateEnd() == null || current.before(event.getDateEnd()) || current.getTime() == event.getDateEnd().getTime())) {
+                    while (beforeOrEqual(current, to)
+                            && (dateEnd == null || beforeOrEqual(current, dateEnd))) {
                         result.add(EventDto.of(event, current));
                         current = nextMonth(current);
                     }
                     break;
             }
         }
+
         result.sort(Comparator.comparing(EventDto::getCurrentDate));
         return result;
     }

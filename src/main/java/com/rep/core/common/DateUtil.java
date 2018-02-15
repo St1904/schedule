@@ -61,6 +61,14 @@ public class DateUtil {
         }
     }
 
+    public static boolean afterOrEqual(Date first, Date second) {
+        return first.after(second) || first.getTime() == second.getTime();
+    }
+
+    public static boolean beforeOrEqual(Date first, Date second) {
+        return first.before(second) || first.getTime() == second.getTime();
+    }
+
     public static int daysBetweenDates(Date start, Date finish) {
         return (int) ((finish.getTime() - start.getTime()) / (1000L * 60 * 60 * 24) + 1);
     }
