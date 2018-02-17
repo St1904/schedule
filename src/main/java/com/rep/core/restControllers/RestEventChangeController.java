@@ -1,7 +1,7 @@
 package com.rep.core.restControllers;
 
 import com.rep.core.dto.EventDto;
-import com.rep.core.services.EventChangeUtil;
+import com.rep.core.services.EventUtil;
 import com.rep.core.services.EventService;
 import com.rep.db.domain.Event;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +20,10 @@ import static com.rep.core.common.DateUtil.toDate;
 @CrossOrigin
 @RestController
 public class RestEventChangeController {
-    private final EventChangeUtil eventChangeUtil;
     private final EventService eventService;
 
     @Autowired
-    public RestEventChangeController(EventChangeUtil eventChangeUtil, EventService eventService) {
-        this.eventChangeUtil = eventChangeUtil;
+    public RestEventChangeController(EventService eventService) {
         this.eventService = eventService;
     }
 
@@ -37,7 +35,7 @@ public class RestEventChangeController {
         if (events.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        List<EventDto> dtos = eventChangeUtil.formatAllEvents(events, toDate(from), toDate(to));
+        List<EventDto> dtos = EventUtil.formatAllEvents(events, toDate(from), toDate(to));
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
 }
