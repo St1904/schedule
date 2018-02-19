@@ -2,6 +2,7 @@ package com.rep.core.restControllers;
 
 import com.rep.core.dto.EventDto;
 import com.rep.core.services.EventService;
+import com.rep.core.services.EventUtil;
 import com.rep.db.domain.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -11,6 +12,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
+import static com.rep.core.common.DateUtil.toDate;
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
@@ -40,15 +42,15 @@ public class RestEventController {
     }
 
     @RequestMapping(method = GET, params = {"from", "to"})
-    public ResponseEntity<List<Event>> listAllEvents(@RequestHeader("idTutor") Long idTutor,
-                                                     @RequestParam(value = "from") String from,
-                                                     @RequestParam(value = "to") String to) {
-        List<Event> events;
-        events = eventService.findBetweenDates(idTutor, from, to);
+    public ResponseEntity<List<EventDto>> listAllEvents(@RequestHeader("idTutor") Long idTutor,
+                                                        @RequestParam(value = "from") String from,
+                                                        @RequestParam(value = "to") String to) {
+        List<Event> events = eventService.findBetweenDates(idTutor, from, to);
         if (events.isEmpty()) {
-            return new ResponseEntity<>(NOT_FOUND);
+            return new ResponseEntity<>(NO_CONTENT);
         }
-        return new ResponseEntity<>(events, OK);
+        List<EventDto> dtos = EventUtil.formatAllEvents(events, toDate(from), toDate(to));
+        return new ResponseEntity<>(dtos, OK);
     }
 
     @RequestMapping(method = GET, path = "/{id}")
