@@ -32,7 +32,7 @@ public class RestJournalController {
         this.journalService = journalService;
     }
 
-    @RequestMapping(method = GET, path = "/idLesson/{idLesson}")
+    @RequestMapping(method = GET, path = "/idLesson/{idLesson}", params = {"date"})
     public ResponseEntity<JournalDto> getByLessonAndDate(@RequestHeader("idTutor") Long idTutor,
                                                          @PathVariable("idLesson") Long idLesson,
                                                          @RequestParam(value = "date") String date) {
@@ -43,7 +43,7 @@ public class RestJournalController {
         return new ResponseEntity<>(JournalDto.of(found), OK);
     }
 
-    @RequestMapping(method = GET)
+    @RequestMapping(method = GET, params = {"limit", "offset"})
     public ResponseEntity<List<JournalDto>> getJournals(@RequestHeader("idTutor") Long idTutor,
                                                         @RequestParam(value = "limit") int limit,
                                                         @RequestParam(value = "offset") int offset) {
@@ -82,7 +82,6 @@ public class RestJournalController {
         if (found == null || !idTutor.equals(found.getLesson().getEvent().getIdTutor())) {
             return new ResponseEntity<>(NOT_FOUND);
         }
-        System.out.println(journal);
         journal.setId(id);
         journal.setDate(found.getDate());
         journal.setLesson(found.getLesson());

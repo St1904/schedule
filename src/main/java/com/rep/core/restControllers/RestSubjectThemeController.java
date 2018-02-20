@@ -21,7 +21,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/rest/theme")
+@RequestMapping("/rest")
 public class RestSubjectThemeController {
     private final SubjectThemeService subjectThemeService;
 
@@ -30,7 +30,8 @@ public class RestSubjectThemeController {
         this.subjectThemeService = subjectThemeService;
     }
 
-    @RequestMapping(method = GET, path = "/parent", params = {"idParent"})
+    //TODO используется?
+    @RequestMapping(method = GET, path = "/theme/parent", params = {"idParent"})
     public ResponseEntity<List<ThemeDto>> getThemesByIdParent(@RequestHeader("idTutor") Long idTutor,
                                                               @RequestParam("idParent") Long idParent) {
 //        List<Subject> subjects = subjectThemeService.findSubjectsByIdTutor(idTutor);
@@ -41,7 +42,7 @@ public class RestSubjectThemeController {
         return new ResponseEntity<>(themes, OK);
     }
 
-    @RequestMapping(method = GET, path = "/tree/parent", params = {"idParent"})
+    @RequestMapping(method = GET, path = "/theme/tree/parent", params = {"idParent"})
     public ResponseEntity<List<ThemeDto>> getTreeByIdParent(@RequestHeader("idTutor") Long idTutor,
                                                             @RequestParam("idParent") Long idParent) {
         List<ThemeDto> themes = subjectThemeService.findTreeByIdParent(idParent);
@@ -51,8 +52,7 @@ public class RestSubjectThemeController {
         return new ResponseEntity<>(themes, OK);
     }
 
-    //TODO Используется?
-    @RequestMapping(method = GET, path = "/subject/{idSubject}")
+    @RequestMapping(method = GET, path = "/subject/{idSubject}/theme")
     public ResponseEntity<List<ThemeDto>> getThemesByIdSubject(@RequestHeader("idTutor") Long idTutor,
                                                                @PathVariable("idSubject") Long idSubject) {
         List<ThemeDto> themes = ThemeDto.of(subjectThemeService.findThemesByIdSubject(idSubject));
@@ -73,7 +73,7 @@ public class RestSubjectThemeController {
         return new ResponseEntity<>(headers, CREATED);
     }
 
-    @RequestMapping(method = POST)
+    @RequestMapping(method = POST, path = "/theme")
     public ResponseEntity<Theme> saveNewTheme(@RequestHeader("idTutor") Long idTutor,
                                               @RequestBody Theme theme,
                                               UriComponentsBuilder ucBuilder) {
@@ -83,7 +83,7 @@ public class RestSubjectThemeController {
         return new ResponseEntity<>(theme, headers, CREATED);
     }
 
-    @RequestMapping(method = DELETE, path = "/{id}")
+    @RequestMapping(method = DELETE, path = "/theme/{id}")
     public ResponseEntity<Theme> deleteContactName(@RequestHeader("idTutor") Long idTutor,
                                                    @PathVariable("id") Long id) {
         Theme found = subjectThemeService.findThemeById(id);
