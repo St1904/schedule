@@ -6,9 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * Created by sbt-sokolova-ts on 08.02.2017.
- */
 @Repository
 public interface SubjectRepository extends JpaRepository<Subject, Long> {
     List<Subject> findByIdTutor(Long idTutor);

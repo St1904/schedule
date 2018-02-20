@@ -10,10 +10,6 @@ import java.util.List;
 
 import static com.rep.core.common.DateUtil.*;
 
-/**
- * Created by St on 10.06.2017.
- */
-
 public class EventUtil {
     public static List<EventDto> formatAllEvents(List<Event> events, Date from, Date to) {
 

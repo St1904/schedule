@@ -8,10 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created by St on 05.06.2017.
- */
-
 @Service
 public class TutorService {
     private TutorRepository tutorRepository;

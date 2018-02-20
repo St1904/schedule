@@ -2,10 +2,6 @@ package com.rep.db.domain;
 
 import javax.persistence.*;
 
-/**
- * Created by sbt-sokolova-ts on 07.02.2017.
- */
-
 @Entity
 @Table(name = "theme")
 public class Theme extends BaseEntity {
@@ -63,18 +59,6 @@ public class Theme extends BaseEntity {
                 ", idParentTheme=" + idParentTheme +
                 '}';
     }
-
-   /* //TODO delete this!
-    @OneToMany(mappedBy = "theme")
-    private Set<Journal> journal = new HashSet<>();
-
-    public Set<Journal> getJournal() {
-        return journal;
-    }
-
-    public void setJournal(Set<Journal> journal) {
-        this.journal = journal;
-    }*/
 
     public Theme() {
     }

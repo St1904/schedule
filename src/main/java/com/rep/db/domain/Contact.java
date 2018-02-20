@@ -4,10 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
-/**
- * Created by sbt-sokolova-ts on 07.02.2017.
- */
-
 @Entity
 @Table(name = "contact")
 public class Contact extends BaseEntity {

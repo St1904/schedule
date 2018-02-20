@@ -12,9 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Created by St on 10.06.2017.
- */
 @Service
 public class StudentContactService {
     private final StudentRepository studentRepository;
@@ -85,16 +82,8 @@ public class StudentContactService {
         return studentRepository.findOne(id);
     }
 
-    /*public Student updateStudent(Student student) {
-        return studentRepository.saveAndFlush(student);
-    }*/
-
     public void deleteStudent(Long id) {
         studentRepository.delete(id);
-    }
-
-    public List<Student> findAll() {
-        return studentRepository.findAll();
     }
 
     public List<Student> findStudentsByIdTutor(Long idTutor) {

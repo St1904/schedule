@@ -5,10 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-/**
- * Created by sbt-sokolova-ts on 07.02.2017.
- */
-
 @Entity
 @Table(name = "subject",
         uniqueConstraints = @UniqueConstraint(

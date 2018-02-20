@@ -6,9 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * Created by sbt-sokolova-ts on 08.02.2017.
- */
 @Repository
 public interface ThemeRepository extends JpaRepository<Theme, Long> {
     List<Theme> findBySubjectId(Long idSubject);

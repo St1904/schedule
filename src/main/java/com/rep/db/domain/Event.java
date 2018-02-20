@@ -6,10 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * Created by St on 05.06.2017.
- */
-
 @Entity
 @Table(name = "event")
 public class Event extends BaseEntity {

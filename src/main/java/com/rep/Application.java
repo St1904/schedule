@@ -5,21 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-/**
- * Created by St on 31.01.2017.
- */
-
-//@EnableAutoConfiguration
-//@ComponentScan
 @SpringBootApplication
-//@Controller
 @EnableJpaRepositories
 public class Application {
-
-//    @RequestMapping(value = "/")
-//    public String index() {
-//        return "index";
-//    }
 
     public static void main(String[] args) {
         ApplicationContext applicationContext = SpringApplication.run(Application.class, args);
@@ -64,7 +52,7 @@ public class Application {
 //        ContactNameRepository contactNameRepository = applicationContext.getBean(ContactNameRepository.class);
 //
 //        ContactName contactName = new ContactName();
-//        contactName.setName("Hi!");
+//        contactName.setName("мобильный телефон");
 //
 //        contactNameRepository.saveAndFlush(contactName);
 //        ContactName contactName = contactNameRepository.findByName("мобильный телефон");

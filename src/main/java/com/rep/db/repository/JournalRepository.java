@@ -9,9 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by sbt-sokolova-ts on 08.02.2017.
- */
 @Repository
 public interface JournalRepository extends JpaRepository<Journal, Long> {
     @Query(value = "select * " +
@@ -26,20 +23,6 @@ public interface JournalRepository extends JpaRepository<Journal, Long> {
     List<Journal> findByTutor(@Param("idTutor") Long idTutor,
                               @Param("limit") int limit,
                               @Param("offset") int offset);
-
-    //TODO убрать?
-    @Query(value = "select exists " +
-            "(select * " +
-            "from journal j, lesson l, event e " +
-            "where e.id_tutor = :idTutor " +
-            "and j.id_lesson = l.id " +
-            "and l.id_event = e.id " +
-            "and l.id = :idLesson " +
-            "and j.date = :date)",
-            nativeQuery = true)
-    boolean existsUnique(@Param("idTutor") Long idTutor,
-                         @Param("idLesson") Long idLesson,
-                         @Param("date") Date date);
 
     @Query(value = "select * " +
             "from journal j, lesson l, event e " +

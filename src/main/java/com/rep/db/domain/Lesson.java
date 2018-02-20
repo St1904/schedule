@@ -5,10 +5,6 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by sbt-sokolova-ts on 07.02.2017.
- */
-
 @Entity
 @Table(name = "lesson")
 public class Lesson extends BaseEntity {

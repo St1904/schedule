@@ -4,10 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-/**
- * Created by sbt-sokolova-ts on 07.02.2017.
- */
-
 @Entity
 @Table(name = "contact_name")
 public class ContactName extends BaseEntity {
@@ -30,9 +26,5 @@ public class ContactName extends BaseEntity {
     }
 
     public ContactName() {
-    }
-
-    public ContactName(String name) {
-        this.name = name;
     }
 }

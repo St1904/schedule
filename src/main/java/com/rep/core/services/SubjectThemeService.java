@@ -10,10 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created by St on 14.06.2017.
- */
-
 @Service
 public class SubjectThemeService {
     private final SubjectRepository subjectRepository;
@@ -23,14 +19,6 @@ public class SubjectThemeService {
     public SubjectThemeService(SubjectRepository subjectRepository, ThemeRepository themeRepository) {
         this.subjectRepository = subjectRepository;
         this.themeRepository = themeRepository;
-    }
-
-    public Subject findSubjectById(Long id) {
-        return subjectRepository.findOne(id);
-    }
-
-    public List<Subject> findSubjectsByIdTutor(Long idTutor) {
-        return subjectRepository.findByIdTutor(idTutor);
     }
 
     public Subject createSubject(Subject subject) {
@@ -44,10 +32,6 @@ public class SubjectThemeService {
 
     public Theme createTheme(Theme theme) {
         return themeRepository.saveAndFlush(theme);
-    }
-
-    public Subject updateSubject(Subject subject) {
-        return subjectRepository.saveAndFlush(subject);
     }
 
     public Theme findThemeById(Long id) {

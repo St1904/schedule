@@ -5,10 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-/**
- * Created by sbt-sokolova-ts on 07.02.2017.
- */
-
 @Entity
 @Table(name = "tutor",
         uniqueConstraints = @UniqueConstraint(
@@ -44,18 +40,4 @@ public class Tutor extends BaseEntity {
                 ", address='" + address + '\'' +
                 '}';
     }
-/*
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "idTutor")
-    private Set<Student> students = new HashSet<>();
-*/
-/*
-    public Set<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(Set<Student> students) {
-        this.students = students;
-    }*/
 }

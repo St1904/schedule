@@ -7,20 +7,12 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by sbt-sokolova-ts on 14.02.2017.
- */
-
 @Service
 public class EventService {
     private EventRepository eventRepository;
 
     public EventService(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
-    }
-
-    public List<Event> findAllEvents() {
-        return eventRepository.findAll();
     }
 
     public List<Event> findAllEventsByIdTutor(Long idTutor) {

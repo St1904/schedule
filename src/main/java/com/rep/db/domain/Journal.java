@@ -5,10 +5,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * Created by sbt-sokolova-ts on 07.02.2017.
- */
-
 @Entity
 @Table(name = "journal")
 public class Journal extends BaseEntity {
