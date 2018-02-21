@@ -4,9 +4,6 @@ import com.rep.db.domain.Lesson;
 
 import java.math.BigDecimal;
 
-/**
- * Created by sbt-sokolova-ts on 16.02.2017.
- */
 public class LessonDto {
     private Long id;
     private BigDecimal price;

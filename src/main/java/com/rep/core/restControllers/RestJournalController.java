@@ -17,10 +17,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
-/**
- * Created by St on 07.01.2018.
- */
-
 @CrossOrigin
 @RestController
 @RequestMapping(path = "/rest/journal")

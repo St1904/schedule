@@ -15,10 +15,6 @@ import java.util.List;
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
-/**
- * Created by St on 14.08.2017.
- */
-
 @CrossOrigin
 @RestController
 @RequestMapping("/rest")
@@ -30,11 +26,9 @@ public class RestSubjectThemeController {
         this.subjectThemeService = subjectThemeService;
     }
 
-    //TODO используется?
     @RequestMapping(method = GET, path = "/theme/parent", params = {"idParent"})
     public ResponseEntity<List<ThemeDto>> getThemesByIdParent(@RequestHeader("idTutor") Long idTutor,
                                                               @RequestParam("idParent") Long idParent) {
-//        List<Subject> subjects = subjectThemeService.findSubjectsByIdTutor(idTutor);
         List<ThemeDto> themes = ThemeDto.of(subjectThemeService.findThemesByIdParent(idParent));
         if (themes.isEmpty()) {
             return new ResponseEntity<>(NO_CONTENT);
@@ -87,9 +81,6 @@ public class RestSubjectThemeController {
     public ResponseEntity<Theme> deleteContactName(@RequestHeader("idTutor") Long idTutor,
                                                    @PathVariable("id") Long id) {
         Theme found = subjectThemeService.findThemeById(id);
-/*        if (found == null || !found.getIdStudent().equals(idTutor)) {
-            return new ResponseEntity<>(NOT_FOUND);
-        }*/
         subjectThemeService.deleteThemeById(id);
         return new ResponseEntity<>(NO_CONTENT);
     }

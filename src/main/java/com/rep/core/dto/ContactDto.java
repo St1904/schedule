@@ -5,9 +5,6 @@ import com.rep.db.domain.Contact;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by sbt-sokolova-ts on 16.02.2017.
- */
 public class ContactDto {
     private Long id;
     private Long idContactName;

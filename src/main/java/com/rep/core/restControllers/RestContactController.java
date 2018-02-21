@@ -16,10 +16,6 @@ import java.util.List;
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
-/**
- * Created by sbt-sokolova-ts on 13.02.2017.
- */
-
 @RestController
 @RequestMapping("/rest/student/{idStudent}/contact")
 public class RestContactController {

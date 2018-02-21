@@ -6,9 +6,6 @@ import com.rep.db.domain.Student;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by sbt-sokolova-ts on 16.02.2017.
- */
 public class StudentDto {
     private Long id;
     private Long idTutor;

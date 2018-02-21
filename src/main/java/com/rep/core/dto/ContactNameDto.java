@@ -2,9 +2,6 @@ package com.rep.core.dto;
 
 import com.rep.db.domain.ContactName;
 
-/**
- * Created by sbt-sokolova-ts on 16.02.2017.
- */
 public class ContactNameDto {
     private Long id;
     private String name;

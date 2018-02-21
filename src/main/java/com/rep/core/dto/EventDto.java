@@ -5,9 +5,6 @@ import com.rep.db.domain.Event;
 
 import java.util.Date;
 
-/**
- * Created by sbt-sokolova-ts on 15.02.2017.
- */
 public class EventDto {
     private Long id;
     private Long idTutor;
@@ -38,14 +35,6 @@ public class EventDto {
         }
         return result;
     }
-/*
-    public static List<EventDto> of (List<Event> list) {
-        List<EventDto> result = new ArrayList<>();
-        for (Event event : list) {
-            result.add(EventDto.of(event));
-        }
-        return result;
-    }*/
 
     public EventDto() {
     }

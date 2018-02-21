@@ -5,9 +5,6 @@ import com.rep.db.domain.Theme;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by sbt-sokolova-ts on 16.02.2017.
- */
 public class ThemeDto {
     private Long id;
     private String name;

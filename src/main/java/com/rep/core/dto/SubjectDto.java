@@ -2,9 +2,6 @@ package com.rep.core.dto;
 
 import com.rep.db.domain.Subject;
 
-/**
- * Created by sbt-sokolova-ts on 16.02.2017.
- */
 public class SubjectDto {
     private Long id;
     private String name;

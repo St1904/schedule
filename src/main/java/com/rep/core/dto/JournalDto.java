@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by sbt-sokolova-ts on 16.02.2017.
- */
 public class JournalDto {
     private Long id;
     private Date date;

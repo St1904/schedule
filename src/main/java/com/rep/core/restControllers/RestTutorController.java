@@ -10,10 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Created by St on 05.06.2017.
- */
-
 @CrossOrigin
 @RestController
 @RequestMapping("/rest/tutor")

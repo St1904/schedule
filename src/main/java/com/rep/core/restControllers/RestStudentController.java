@@ -12,10 +12,6 @@ import java.util.List;
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
-/**
- * Created by St on 10.06.2017.
- */
-
 @CrossOrigin
 @RestController
 @RequestMapping("/rest/student")
